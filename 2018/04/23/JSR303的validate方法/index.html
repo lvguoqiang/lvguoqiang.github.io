@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="简介 用于对前台传到后台的 form 表单的数据进行校验;对 DTO 中的属性进行校验  检验规则空检验 @Null 验证对象是否为空 @NotNull 验证对象不为空, 无法查检长度为0的字符串 @NotBlank 检查约束字符串是不是为Null, 还有被Trim的长度是否大于0, 只对字符串, 且会去掉前后空格 @NotEmpty 检查约束元素是否为Null或EMPTY  Boolean 校验">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://lvguoqiang.cn/2018/04/17/hello-world/index.html">
+<meta property="og:title" content="Lvguoqiang">
+<meta property="og:url" content="http://lvguoqiang.cn/2018/04/23/JSR303的validate方法/index.html">
 <meta property="og:site_name" content="Lvguoqiang">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="简介 用于对前台传到后台的 form 表单的数据进行校验;对 DTO 中的属性进行校验  检验规则空检验 @Null 验证对象是否为空 @NotNull 验证对象不为空, 无法查检长度为0的字符串 @NotBlank 检查约束字符串是不是为Null, 还有被Trim的长度是否大于0, 只对字符串, 且会去掉前后空格 @NotEmpty 检查约束元素是否为Null或EMPTY  Boolean 校验">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-10-28T00:39:58.000Z">
+<meta property="og:updated_time" content="2018-04-23T10:47:58.692Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="Lvguoqiang">
+<meta name="twitter:description" content="简介 用于对前台传到后台的 form 表单的数据进行校验;对 DTO 中的属性进行校验  检验规则空检验 @Null 验证对象是否为空 @NotNull 验证对象不为空, 无法查检长度为0的字符串 @NotBlank 检查约束字符串是不是为Null, 还有被Trim的长度是否大于0, 只对字符串, 且会去掉前后空格 @NotEmpty 检查约束元素是否为Null或EMPTY  Boolean 校验">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://lvguoqiang.cn/2018/04/17/hello-world/"/>
+  <link rel="canonical" href="http://lvguoqiang.cn/2018/04/23/JSR303的validate方法/"/>
 
 
 
 
 
-  <title>Hello World | Lvguoqiang</title>
+  <title> | Lvguoqiang</title>
   
 
 
@@ -257,7 +257,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://lvguoqiang.cn/2018/04/17/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://lvguoqiang.cn/2018/04/23/JSR303的validate方法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lvguoqiang">
@@ -274,7 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -286,8 +286,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-17T22:18:22+08:00">
-                2018-04-17
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-23T18:39:24+08:00">
+                2018-04-23
               </time>
             
 
@@ -324,16 +324,47 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><blockquote>
+<p>用于对前台传到后台的 form 表单的数据进行校验;<br>对 DTO 中的属性进行校验</p>
+</blockquote>
+<h2 id="检验规则"><a href="#检验规则" class="headerlink" title="检验规则"></a>检验规则</h2><h3 id="空检验"><a href="#空检验" class="headerlink" title="空检验"></a>空检验</h3><ul>
+<li>@Null 验证对象是否为空</li>
+<li>@NotNull 验证对象不为空, 无法查检长度为0的字符串</li>
+<li>@NotBlank 检查约束字符串是不是为Null, 还有被Trim的长度是否大于0, 只对字符串, 且会去掉前后空格</li>
+<li>@NotEmpty 检查约束元素是否为Null或EMPTY</li>
+</ul>
+<h3 id="Boolean-校验"><a href="#Boolean-校验" class="headerlink" title="Boolean 校验"></a>Boolean 校验</h3><ul>
+<li>@AssertTrue 验证 Boolean 对象是否为 true</li>
+<li>@AssertFalse 验证 Boolean 对象是否为 false</li>
+</ul>
+<h3 id="长度校验"><a href="#长度校验" class="headerlink" title="长度校验"></a>长度校验</h3><ul>
+<li>@Size(min=,max=) 验证对象 (Array, Collection, Map, String) 长度是否在给定的范围之内</li>
+<li>@Length(min=,max=) 验证字符串的长度是否在 min 和 max 之间</li>
+</ul>
+<h3 id="日期校验"><a href="#日期校验" class="headerlink" title="日期校验"></a>日期校验</h3><ul>
+<li>@Past 验证 Date 和 Calendar 对象是否在当前时间之前, 验证成立的话被注释的元素一定是一个过去的日期</li>
+<li>@Future 验证 Date 和 Calendar 对象是否在当前时间之后, 验证成立的话被注释的元素一定是一个将来的日期</li>
+<li>@Pattern 验证 String 对象是否符合正则表达式的规则, 被注释的元素符合指定的正则表达式, regex: 正则表达式 flags: 指定 Pattern.Flag 的数组, 标识正则表达式的相关内容</li>
+</ul>
+<h3 id="数值校验"><a href="#数值校验" class="headerlink" title="数值校验"></a>数值校验</h3><ul>
+<li>建议使用在String, Integer类型, 不要使用在 int 类型上, 因为, “” 无法转化为int</li>
+<li>@Min 验证 Number 或 String 对象是否大于等于指定的值</li>
+<li>@Max 验证 Number 或 String 对象是否小于等于指定的值</li>
+<li>@DecimalMax 被标注的值必须不大于约束中指定的最大值, 这个约束的参数是一个通过 BigDecimal 定义的最大值的字符串表示, 小数存在精度</li>
+<li>@DecimalMin 被标注的值必须不小于约束中指定的最小值, 这个约束的参数是一个通过 BigDecimal 定义的最小值的字符串表示, 小数存在精度</li>
+<li>@Digits  验证 Number 和 String 的构成是否合法</li>
+<li>@Digits(integer=,faction=) 验证字符串是否符合指定格式的数字, integer 指定整数精度, faction指定小数精度</li>
+<li>@Range(min=,max=) 被指定的元素必须在合适的范围内</li>
+<li>@Range(min=1000,max=5000,message=”range.bean.wage”)</li>
+<li>@Valid 递归的关联对象进行校验, 如果关联对象是个集合或者数组, 那么对其中的元素进行递归校验, 如果是一个map, 则对其中的值部分进行校验</li>
+<li>@CreditCardNumber 信用卡校验</li>
+<li>@Email 验证是否是邮件地址, 如果为 null, 不进行验证, 算通过验证</li>
+<li>@Url(protocol=,host=,port=,regexp=,flags=)</li>
+</ul>
+<h3 id="用于-controller-中"><a href="#用于-controller-中" class="headerlink" title="用于 controller 中"></a>用于 controller 中</h3><p>需要在类上面添加 @Valid</p>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class Order &#123;</span><br><span class="line">    // 必须不为空, 大小为10</span><br><span class="line">    @NotNull</span><br><span class="line">    @Size(min=10,max=10)</span><br><span class="line">    private String orderId;</span><br><span class="line">    </span><br><span class="line">    // 必须不为空</span><br><span class="line">    @NotEmpty</span><br><span class="line">    private String customer;</span><br><span class="line">    </span><br><span class="line">    // 嵌套验证</span><br><span class="line">    @Valid</span><br><span class="line">    private Product product</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@NotNull(message=&quot;adultTax不能为空&quot;)</span><br><span class="line">private Integer adultTax;</span><br><span class="line">@NotNull(message=&quot;adultTaxType不能为空&quot;)</span><br><span class="line">@Min(values=0, message=&quot;adultTaxType 的最小值为0&quot;)</span><br><span class="line">@Max(values=1, message=&quot;adultTaxType 的最大值为1&quot;)</span><br><span class="line">private Integer adultTaxType;</span><br><span class="line"></span><br><span class="line">@NotNull(message=&quot;reason信息不能为空&quot;)</span><br><span class="line">@Pattern(regexp=&quot;[1-7]&#123;1&#125;&quot;,message=&quot;reson的类型值为 1-7 中的一个类型&quot;)</span><br><span class="line">private String reason;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class BeanValidatorUtil &#123;</span><br><span class="line"></span><br><span class="line">    private static Validator validator = Validation.buildDefaultValidatorFactory().getValidator();</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 调用JSR303的validate方法, 验证失败时抛ConstraintViolationException.</span><br><span class="line">     */</span><br><span class="line">    @SuppressWarnings(&#123; &quot;unchecked&quot;, &quot;rawtypes&quot; &#125;)</span><br><span class="line">    public static void validate(Object object, Class&lt;?&gt;... groups)</span><br><span class="line">            throws ConstraintViolationException &#123;</span><br><span class="line">        Set constraintViolations = validator.validate(object, groups);</span><br><span class="line">        if (!constraintViolations.isEmpty()) &#123;</span><br><span class="line">            throw new ConstraintViolationException(constraintViolations);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -366,15 +397,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/04/18/CSS/" rel="next" title="CSS总结">
+                <i class="fa fa-chevron-left"></i> CSS总结
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/18/CSS/" rel="prev" title="CSS总结">
-                CSS总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -511,7 +542,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#检验规则"><span class="nav-number">1.1.</span> <span class="nav-text">检验规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#空检验"><span class="nav-number">1.1.1.</span> <span class="nav-text">空检验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Boolean-校验"><span class="nav-number">1.1.2.</span> <span class="nav-text">Boolean 校验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#长度校验"><span class="nav-number">1.1.3.</span> <span class="nav-text">长度校验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日期校验"><span class="nav-number">1.1.4.</span> <span class="nav-text">日期校验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数值校验"><span class="nav-number">1.1.5.</span> <span class="nav-text">数值校验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用于-controller-中"><span class="nav-number">1.1.6.</span> <span class="nav-text">用于 controller 中</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#案例"><span class="nav-number">1.2.</span> <span class="nav-text">案例</span></a></li></ol></li></ol></div>
             
 
           </div>
