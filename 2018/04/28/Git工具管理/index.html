@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="前端," />
+  <meta name="keywords" content="git," />
 
 
 
@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="元素选择 类型选择 plate 选择所有plate类型的元素 id选择 #fancy 选择id为fancy的元素 层级选择plate apple 选择plate 下的apple #fancy pickle 选择id为fancy下的pickle元素  类选择器 .small 选择class为small的元素 plate[class=’small’]  选择多个元素用,隔开 plate .small,">
-<meta name="keywords" content="前端">
+<meta name="description" content="主要步骤  添加(add), 提交(commit), 远程推送(push), 远程克隆(clone), 远程更新(pull),  其它命令: branch, tag, remote, checkout, merge, log, status, fetch, rebase等 命令git branch 查看本地分支git branch -a 查看远程所有分支git branch  新增本地分支git">
+<meta name="keywords" content="git">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CSS总结">
-<meta property="og:url" content="http://lvguoqiang.cn/2018/04/18/CSS/index.html">
+<meta property="og:title" content="Git常用命令">
+<meta property="og:url" content="http://lvguoqiang.cn/2018/04/28/Git工具管理/index.html">
 <meta property="og:site_name" content="Lvguoqiang">
-<meta property="og:description" content="元素选择 类型选择 plate 选择所有plate类型的元素 id选择 #fancy 选择id为fancy的元素 层级选择plate apple 选择plate 下的apple #fancy pickle 选择id为fancy下的pickle元素  类选择器 .small 选择class为small的元素 plate[class=’small’]  选择多个元素用,隔开 plate .small,">
+<meta property="og:description" content="主要步骤  添加(add), 提交(commit), 远程推送(push), 远程克隆(clone), 远程更新(pull),  其它命令: branch, tag, remote, checkout, merge, log, status, fetch, rebase等 命令git branch 查看本地分支git branch -a 查看远程所有分支git branch  新增本地分支git">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-19T09:51:59.367Z">
+<meta property="og:image" content="http://lvguoqiang.cn/images/git流程.png">
+<meta property="og:updated_time" content="2018-04-28T06:25:11.736Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CSS总结">
-<meta name="twitter:description" content="元素选择 类型选择 plate 选择所有plate类型的元素 id选择 #fancy 选择id为fancy的元素 层级选择plate apple 选择plate 下的apple #fancy pickle 选择id为fancy下的pickle元素  类选择器 .small 选择class为small的元素 plate[class=’small’]  选择多个元素用,隔开 plate .small,">
+<meta name="twitter:title" content="Git常用命令">
+<meta name="twitter:description" content="主要步骤  添加(add), 提交(commit), 远程推送(push), 远程克隆(clone), 远程更新(pull),  其它命令: branch, tag, remote, checkout, merge, log, status, fetch, rebase等 命令git branch 查看本地分支git branch -a 查看远程所有分支git branch  新增本地分支git">
+<meta name="twitter:image" content="http://lvguoqiang.cn/images/git流程.png">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://lvguoqiang.cn/2018/04/18/CSS/"/>
+  <link rel="canonical" href="http://lvguoqiang.cn/2018/04/28/Git工具管理/"/>
 
 
 
 
 
-  <title>CSS总结 | Lvguoqiang</title>
+  <title>Git常用命令 | Lvguoqiang</title>
   
 
 
@@ -254,7 +256,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://lvguoqiang.cn/2018/04/18/CSS/">
+    <link itemprop="mainEntityOfPage" href="http://lvguoqiang.cn/2018/04/28/Git工具管理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lvguoqiang">
@@ -271,7 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">CSS总结</h1>
+          <h1 class="post-title" itemprop="name headline">Git常用命令</h1>
         
 
         <div class="post-meta">
@@ -283,8 +285,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-18T00:00:00+08:00">
-                2018-04-18
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-28T14:09:32+08:00">
+                2018-04-28
               </time>
             
 
@@ -321,92 +323,38 @@
       
 
       
-        <h1 id="元素选择"><a href="#元素选择" class="headerlink" title="元素选择"></a>元素选择</h1><ol>
-<li>类型选择 plate 选择所有plate类型的元素</li>
-<li>id选择 #fancy 选择id为fancy的元素</li>
-<li><p>层级选择plate apple 选择plate 下的apple<br> #fancy pickle 选择id为fancy下的pickle元素</p>
+        <h1 id="主要步骤"><a href="#主要步骤" class="headerlink" title="主要步骤"></a>主要步骤</h1><p><img src="/images/git流程.png"> </p>
+<pre><code>添加(add), 提交(commit), 远程推送(push), 远程克隆(clone), 远程更新(pull), 
+</code></pre><p>其它命令: branch, tag, remote, checkout, merge, log, status, fetch, rebase等</p>
+<h1 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h1><p>git branch 查看本地分支<br>git branch -a 查看远程所有分支<br>git branch <branch name=""> 新增本地分支<br>git checkout <branch name=""> 切换到本地分支<br>git branch -d <branch name=""> 删除分支(注意必须先切换到其它分支才行)<br>git branch -av  显示提交信息<br>git branch -avv 显示本地分支和那个远程分支关联</branch></branch></branch></p>
+<p>git push origin dev -u 将本地修改提交到远程的 dev 分支(如果远程不存在dev分支, 需要加 -u)</p>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><ol>
+<li><p>将本地的文件 commit 到一个分支后, 再其它分支是无法看见该文件的, 除非 合并分支<br>例如:<br> 有两个分支: master, dev<br> 有一个文件 a.txt, 将它提交到 dev 分支, 在 master 分支就无法看见该文件</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br><span class="line">touch a.txt</span><br><span class="line">git add a.txt</span><br><span class="line">git checkout dev</span><br><span class="line">git commit -m &quot;test&quot;</span><br></pre></td></tr></table></figure>
+<p> 此时在 master 分支里面无法看见 a.txt 这个文件</p>
 </li>
-<li><p>类选择器 .small 选择class为small的元素<br> plate[class=’small’]</p>
+<li><p>解决冲突<br>例如:<br> 当你同时修改 a.txt时, 使用 git pull, 就会显示 dev | merging<br> 现在需要手动编辑该文件, 然后再次提交</p>
 </li>
-<li>选择多个元素用,隔开<br> plate .small,bento .small  选择plate下class为small的和bento下class为small的</li>
-<li>组合选择<br> orange.small 选择orange元素中class为small的</li>
-<li>选择下一个元素<br> plate + apple 选择plate下的第一个为apple的元素</li>
-<li>选择某个元素接下来的元素<br> plate ~ apple<br> 选择plate 下的apple</li>
-<li>选择嫡系元素<br> A &gt; B   和  A B 区别<br> A &gt; B 是选择A元素下第一级B 元素<br> A B 是选择A元素下的B元素，不是一级也可以</li>
-<li><p>选择子元素</p>
-<ul>
-<li>:first-child 选择所有第一个子元素</li>
-<li>A:first-child 选择第一个A元素</li>
-<li>div p:first-child 选择div的第一个p元素</li>
-<li>:only-child 选择只有一个子元素的子元素</li>
-<li>pickle:only-child 选择pickle为唯一子元素的pickle</li>
-<li>pickle :only-child 选择pickle下的唯一子元素的元素</li>
-<li>ul li:only-child 选择ul下li为唯一子元素的元素</li>
-<li>:last-child 选择最后一个子元素</li>
-<li>span:last-child 选择最后一个span元素</li>
-<li><p>span :last-child 选择则span下的选择所有最后一个子元素</p>
+<li><p>一种常见的情况<br> 你在远程新建一个 master 分支, 并且给里面新建了一个 readme.md 文件<br> 你在本地又新建了一个 master 分支, 并且新建了 a.txt<br> 然后你 git remote -a origin <a href="http://github.com/text.git" target="_blank" rel="noopener">http://github.com/text.git</a><br> 现在就回出现 即不能提交又不能更新的问题. how?<br> 需要将本地 master 分支与远程 master 分支进行关联</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch --set-upstream-to=origin/master master</span><br><span class="line">git pull --allow-unrelated-histories</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>:nth-child(8) 选择第8个子元素</p>
+<li><p>git tag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git tag V1.0</span><br><span class="line">git push origin V1.0 -u</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>p:nth-child(1) 选择第一个p元素</p>
+<li><p>基于 tag 进行开发</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch V1.0_dev V1.0</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>:first-of-type 选择所有第一种类型的元素</p>
+<li><p>本地添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 添加指定文件到缓存区</span><br><span class="line">git add &lt;fileName&gt;</span><br><span class="line"># 添加指定目录到缓存区</span><br><span class="line">git add &lt;directory&gt;</span><br><span class="line"># 添加所有</span><br><span class="line">git add -A</span><br><span class="line"># 将指定目录及子目录移出缓存区</span><br><span class="line">git rm --cached target -f</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>span:first-of-type 选择第一个span</p>
+<li><p>本地提交</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 提交至本地仓库</span><br><span class="line">git commit -m &quot;提交&quot;</span><br><span class="line"># 提交所有</span><br><span class="line">git commit -mA &quot;all&quot;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>span:nth-of-type(2) 选择第2个span</p>
+<li><p>分支管理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 查看当前分支</span><br><span class="line">git branch </span><br><span class="line"># 查看所有分支</span><br><span class="line">git branch -a </span><br><span class="line"># 基于当前分支, 新建分支</span><br><span class="line">git branch &lt;branch name&gt;</span><br><span class="line"># 基于提交新建分支</span><br><span class="line">git branch &lt;branch name&gt; &lt;commit id&gt;</span><br><span class="line"># 切换分支</span><br><span class="line">git checkout &lt;branch name&gt;</span><br><span class="line"># 合并分支</span><br><span class="line">git merge &lt;merge target&gt;</span><br></pre></td></tr></table></figure>
 </li>
-<li>span:nth-of-type(odd)选择第奇数个span</li>
-<li><p>span:nth-of-type(even)选择第偶数个span</p>
-</li>
-<li><p>:last-of-type 最后一种类型的元素</p>
-</li>
-<li><p>div:empty 选择没有子元素的div</p>
-</li>
-<li><p>:not(#fancy) 选择除了id为fancy的元素</p>
-</li>
-<li>div:not(:first-child) 选择不是第一个子元素的div</li>
-<li>:not(.big,.medium)选择class不包含big或medium的元素</li>
-</ul>
-</li>
-<li>根据属性选择文件<ul>
-<li>a[href] 选择拥有href属性的a元素</li>
-<li>a[href=”#”]选择href=#的a元素</li>
-</ul>
-</li>
-<li>模糊选择<ul>
-<li>.toy[category^=’Sam’] 选择class为toy且category的值以Sam开头的元素</li>
-<li><code>img[src$=&quot;.jpg&quot;]选择img元素中src的值以.jpg结尾的元素</code></li>
-<li><code>img[src*=&quot;hadding&quot;] 选择img元素中src的值包含headding的元素</code></li>
-</ul>
-</li>
-</ol>
-<h1 id="flex布局"><a href="#flex布局" class="headerlink" title="flex布局"></a>flex布局</h1><ol>
-<li>justify-content:内容对齐，应用在弹性容器上，把弹性想沿着弹性容器的主轴线对齐。改操作发生在弹性长度及自动边距被确定后。它用来在存在剩余空间时如何加以分配，也会在发生内容溢出时影响项目的对齐<br> 参数：<pre><code>flex-start 弹性项目想行头紧挨着填充。它是默认值。
-flex-end 弹性项目向行尾紧挨着填充。
-center 弹性项目居中田中
-space-between 弹性项目平均分布在该行上。
-space-around    弹性项目平均分布在该杭商，两边留一半的的间隔空间。
-</code></pre></li>
-<li>align-ites: 设置或检索弹性盒子元素在侧轴（纵轴）方向上的对齐方式。<br> 参数：<pre><code>flex-start: 纵轴起始位置，也就是顶部
-flex-end: 纵轴结束位置，也就是底部
-center:    纵轴居中
-baseline:    如弹性盒子元素的行内轴与侧轴为同一条，则该值与flex-start等效。其它情况将参与基线对齐
-strech:如果指定侧轴大小的属性为auto，则其值会使项目的边距盒的尺寸尽可能接近所在行的尺寸
-</code></pre></li>
-<li>flex-direction: 通过定义容器的主轴方向来决定flex子项在容器中的位置。修改了主轴方向，就会影响其他的内容，例如:flex-direction:row-reverse;那么justify-content:flex-end;结果就会变为左对齐<br> 参数：<pre><code>row: 主轴与内轴方向作为默认。即横向从左到右排列(左对齐);
-row-reverse: 横向从右到左排列(右对齐)
-column: 主轴与块轴方向作为默认的书写模式。即纵向从上到下排列(顶部对齐)
-column-reverse: 纵向从下到上排列(地不对齐)
-</code></pre></li>
-<li>order: 设置或检索弹性盒模型对象的子元素出现的順序。默认为0</li>
-<li>align-self: 定义flex子项单独在侧轴方向的对齐方式。参数和上面的一样</li>
-<li>flex-wrap 让弹性盒元素在必要时拆行<br> 参数：<pre><code>nowrap: 默认值，不换行
-wrap:    换行
-wrap-reverse: 换行，但是按照相反的方向
-</code></pre></li>
-<li>flex-flow: flex-direction和flex-wrap的结合</li>
-<li>align-content： 属性在弹性容器内的各项没有占用交叉轴上所有可用的空间时对齐容器内的各项（垂直）。只有多行的项目才能看出效果。</li>
+<li><p>tag管理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 查看当前</span><br><span class="line">git tag</span><br><span class="line"># 创建分类</span><br><span class="line">git tag &lt;tag name&gt; &lt;branch name&gt;</span><br><span class="line"># 删除分类</span><br><span class="line">git tag -d &lt;tag name&gt;</span><br></pre></td></tr></table></figure></li>
 </ol>
 
       
@@ -434,7 +382,7 @@ wrap-reverse: 换行，但是按照相反的方向
       
         <div class="post-tags">
           
-            <a href="/tags/前端/" rel="tag"># 前端</a>
+            <a href="/tags/git/" rel="tag"># git</a>
           
         </div>
       
@@ -447,8 +395,8 @@ wrap-reverse: 换行，但是按照相反的方向
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/17/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2018/04/23/JSR303的validate方法/" rel="next" title="HSR303 validate">
+                <i class="fa fa-chevron-left"></i> HSR303 validate
               </a>
             
           </div>
@@ -456,10 +404,6 @@ wrap-reverse: 换行，但是按照相反的方向
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/23/JSR303的validate方法/" rel="prev" title="HSR303 validate">
-                HSR303 validate <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -596,7 +540,7 @@ wrap-reverse: 换行，但是按照相反的方向
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#元素选择"><span class="nav-number">1.</span> <span class="nav-text">元素选择</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#flex布局"><span class="nav-number">2.</span> <span class="nav-text">flex布局</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#主要步骤"><span class="nav-number">1.</span> <span class="nav-text">主要步骤</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#命令"><span class="nav-number">2.</span> <span class="nav-text">命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注意"><span class="nav-number">3.</span> <span class="nav-text">注意</span></a></li></ol></div>
             
 
           </div>
