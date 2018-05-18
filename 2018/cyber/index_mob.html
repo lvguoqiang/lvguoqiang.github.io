@@ -60,12 +60,6 @@
 				width: 2rem ;
 				height: 2rem ;
 			}
-			.container{
-				padding-left: 10rem;
-				padding-right: 10rem;
-				margin-right: auto;
-    			margin-left: auto;
-			}
 			.top{
 				box-sizing: border-box;
 				padding-bottom: 1vmin;
@@ -86,49 +80,6 @@
 				box-sizing: border-box;
 				width: 100%;
 				height: 80%;
-			}
-			.footer{
-				padding: 1rem 0 0 0;
-				box-sizing: border-box;
-				width: 100%;
-				height: 10%;
-			}
-			.footer .right{
-				float: right;
-				width: 75%;
-				text-align: center;
-				font-size: 1.6rem;
-			}
-			.con_left{
-				padding-top: 1vmin;
-			}
-			.con_left .con_left_top,.con_left .con_left_middle{
-				font-size: 1.6rem;
-				height: 45%;
-			}
-			.con_left .vl_text{
-				color: #FFCC00;
-				font-size: 2rem;
-				/* font-weight: 700; */
-			}
-			.con_left .con_left_bottom{
-				position: relative;
-				font-size: 2rem;
-				height: 10%;
-			}
-			.con_left .con_left_bottom .img{
-				position: absolute;
-				bottom: 0;
-			}
-			.con_left_middle span{
-				display: block;
-				font-size: 1.5rem;
-			}
-			.con_left .learn_more a{
-				display: block;
-				color: #FFCC00;
-				margin-top: 1.2rem;
-				font-size: 2rem;
 			}
 			.col-md-3{
 				box-sizing: border-box;
@@ -153,18 +104,20 @@
 				float: left;
 			}
 			.content .top{
-				height:45%;
+				height:58%;
+				border:none;
+				padding:0;
 			}
 			.content .top .pic{
 				background: url('images/index/bck_index.jpg') no-repeat;
 				background-size:cover;
 				background-position:center;
-				width: 74%;
+				width: 98%;
 				position:absolute;
 			}
 			.content .top .pic:after{
 				content:"";
-				padding-bottom: 66%;
+				padding-bottom: 70%;
 			    width: .1px;
 			    display:block;
 			}
@@ -215,6 +168,11 @@
 				color: #FFCC00;
 				margin-top: 1.2rem;
 				font-size: 5rem;
+			}
+			.footer span{
+				display:block;
+				text-align:center;
+				font-size:4rem;
 			}
 		</style>
 	</head>
@@ -271,8 +229,8 @@
 				<div class="bottom"></div>
 			</div>
 			<div class="footer">
-				<div class="right">Visual LVM | Abouts</div>
-				<div class="right">Copyright © 2018 Cyber Dimension. All rights reserved.</div>
+				<span>Visual LVM | Abouts</span>
+				<span class="right">Copyright © 2018 Cyber Dimension. All rights reserved.</span>
 			</div>
 		</div>
 	</body>
