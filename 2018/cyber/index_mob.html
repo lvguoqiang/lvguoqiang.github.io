@@ -153,19 +153,23 @@
 				float: left;
 			}
 			.content .top{
-				height:65%;
+				height:45%;
 			}
 			.content .top .pic{
 				background: url('images/index/bck_index.jpg') no-repeat;
 				background-size:cover;
 				background-position:center;
-				width: 100%;
-				height:0;
-				padding-bottom:80%;
+				width: 74%;
 				position:absolute;
 			}
+			.content .top .pic:after{
+				content:"";
+				padding-bottom: 66%;
+			    width: .1px;
+			    display:block;
+			}
 			.content .top .pic span{
-				top: 12rem;
+				top: 8rem;
 				left: 50%;
 				word-wrap: break-word;
 				color: #FFCC00;
@@ -181,7 +185,7 @@
 				margin-top: 1rem;
 				cursor: pointer;
 				position: relative;
-			    top: 15rem;
+			    top: 9rem;
 			    left: 50%;
 			    display:inline-block;
 			}
@@ -194,10 +198,23 @@
 				height:30%;
 			}
 			.content .middle .text_left{
-				width:30%;
+				width:45%;
 			}
 			.content .middle .text_right{
-				width:50%;
+				color:#000;
+				width:45%;
+				display:flex;
+				justify-content:space-between;
+				flex-direction:column;
+			}
+			.content .middle .text_right span{
+				display:block;
+			}
+			.content .middle .text_right .learn_more a{
+				display: block;
+				color: #FFCC00;
+				margin-top: 1.2rem;
+				font-size: 5rem;
 			}
 		</style>
 	</head>
