@@ -9,9 +9,6 @@
 		<meta name="author" content="Cyber Dimension"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 		<style>
-			body {
-			  font-size:100%
-			}
 			a {
 				text-decoration: none;
 				color: black;
@@ -20,176 +17,193 @@
 				text-decoration: none;
 				color: #337ab7;
 			}
-			.con_right, .con_right .bak {
-				height: 100%;
-				width: 100%;
-			}
-			.con_right{
-				position: relative;
-			}
-			.con_right .bak{
-				background: url('images/index/bck_index.jpg') no-repeat;
-				background-size:cover;
-				background-position:center;
-				width: 100%;
-				height: 100%;
-			}
-			.con_right .text {
-				position: absolute;
-				top: 16%;
-				left: 65%;
-				word-wrap: break-word;
-				color: #FFCC00;
-				font-size: 1.6rem ;
-				font-weight: 700;
-			}
-			.con_right .text span{
-				display: inline-block;
-			}
-			.con_right .text .operation{
-				background-color: #000;
-				color: #fff;
-				float: left;
-				margin-right: 1rem ;
-				font-size: 1.4rem ;
-				padding: 1rem;
-				margin-top: 1rem;
-				cursor: pointer;
-			}
 			img{
-				width: 2rem ;
-				height: 2rem ;
+				width: 20px ;
+				height: 20px ;
+				vertical-align: middle;
 			}
 			.container{
-				padding-left: 10rem;
-				padding-right: 10rem;
-				margin-right: auto;
-    			margin-left: auto;
+				margin:0 100px;
+				min-width:1150px;
 			}
 			.top{
-				box-sizing: border-box;
-				padding-bottom: 1vmin;
-				width: 100%;
-				height: 4rem;
-				font-size: 2rem;
-				color: black;
-				border-bottom: 0.3rem solid lightgray;
-			}
-			.top .middle{
-				width: 100%;
-				top: 50%;
-				height: 70%;
-				transform: translateY(50%);
-			}
-			.col-md-3{
-				box-sizing: border-box;
-				width: 25%;
-				float: left;
-				padding-right: 1.5rem;
-			}
-			.col-md-9{
-				box-sizing: border-box;
-				width: 75%;
-				float: left;
-			}
-			.content{
-				// padding:0 5rem;
-			}
-			.c_mid {
 				display:flex;
 				justify-content: space-between;
+				font-size: 20px;
+				width:980px;
+			}
+			.nav_left{
+				text-align:center;
+				padding-bottom:6px;
+				min-width:210px;
+				border-bottom: 3px solid lightgray;
+			}
+			.nav_right{
+				display:flex;
+				justify-content: space-between;
+				min-width:650px;
+			}
+			.content{
+				font-size:17px;
+				padding-right: 180px;
 			}
 			.c_top{
-				height:30%;
-				font-size:2.5rem;
-				display: flex;
-			    justify-content: center;
+				height:190px;
+				display:flex;
+				flex-direction:column;
+			}
+			.produce{
+				font-size:40px;
+				font-weight:400;
+				margin-bottom:20px;
+			}
+			.link{
+				font-size:25px;
+			}
+			.c_mid{
+				display:flex;
+				justify-content:space-between;
+			}
+			.c_mid .buy{
+				width: 220px;
+				height:300px;
+				border:1px solid black;
+				background-color: rgba(204, 204, 204, 1);
+				text-align:center;
+			    display: flex;
 			    flex-direction: column;
+			    justify-content: space-around;
 			}
-			.c_top span{
-				display:block;
+			.c_mid .buy .price{
+				font-weight: 700;
+    			font-size: 35px;
 			}
-			.c_top .produce{
-				font-size: 4rem;
+			.c_mid .buy .deadline{
+			    margin: 0 auto;
+			    font-size: 25px;
+			    width: 154px;
+			    text-align: center;
 			}
-			.buy {
-				width:30%;
-				height:50%;
-				background-color:rgba(204, 204, 204, 1);
+			.c_mid .buy .type{
+				font-size: 22px;
+			    width: 80%;
+			    margin: 0 auto;
+			    color: #fff
+			}
+			.c_mid .buy .operate{
+				width: 63%;
+			    font-size: 23px;
+			    background-color: rgba(185, 173, 62, 1);
+			    height: 45px;
+			    line-height: 45px;
+			    margin: 0 auto;
+			    cursor: pointer;
+			    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.34901);
+			    color:#fff;
 			}
 			.c_bottom{
-				display:flex;
-				// justify-content:space-around;
-				font-size:1.5rem;
-				// padding-left: 5rem;
+				font-size: 20px;
+				margin-top:15px
 			}
-			.c_bottom .left, .c_bottom .right{
-				display:flex;
-				justify-content:center;
-				flex-direction:column;
-				margin-right: 10rem;
+			.c_bottom .left{
+				width:325px;
+				margin-right:120px;
+				float:left;
+				flex-direction: column;
+			    display: flex;
+			    justify-content: space-between;
 			}
-			.c_bottom .header{
-				font-size: 2rem;
+			.c_bottom .right{
+				flex-direction: column;
+			    display: flex;
+			    justify-content: space-between;	
+			}
+			.header{
+				font-size:25px;
+				margin: 5px 0;
+			}
+			.c_bottom img{
+				width:30px;
+				height:30px;
 			}
 		</style>
 	</head>
 	<body>
 		<div class="container">
 			<div class="top">
-				<div class="row clearfix middle">
-					<div class="col-md-3 col-xs-3 col-sm-3 column">
-						<div class="logo">
-							<img id="u4_img" class="img" src="images/index/u4.png">
-							<a class="" href="#">Cyber Dimension</a>
-						</div>
+				<div class="nav_left">
+					<div>
+						<img id="u4_img" class="img" src="images/index/u4.png">
+						<a class="" href="#">Cyber Dimension</a>
 					</div>
-					<div class="col-md-9 col-xs-9 col-sm-9 column">
-						<div class="row clearfix">
-							<div class="col-md-3 col-xs-3 col-sm-3">
-								<a href="product.html">Visual LVM</a>
-							</div>
-							<div class="col-md-3 col-xs-3 col-sm-3">
-								<a href="download.html">Download</a>
-							</div>
-							<div class="col-md-3 col-xs-3 col-sm-3">
-								<a href="user_guide.html">User Guide</a>
-							</div>
-							<div class="col-md-3 col-xs-3 col-sm-3">
-								<a href="lvm_support.html">Support</a>
-							</div>
-						</div>
+				</div>
+				<div class="nav_right">
+					<div>
+						<a href="product.html">Visual LVM</a>
+					</div>
+					<div>
+						<a href="download.html">Download</a>
+					</div>
+					<div>
+						<a href="user_guide.html">User Guide</a>
+					</div>
+					<div>
+						<a href="lvm_support.html">Support</a>
 					</div>
 				</div>
 			</div>
 			<div class="content">
 				<div class="c_top">
-					<span class="produce">
+					<div class="produce">
 						A new style to manage LVM
-					</span>
-					<span class="link">
-						<a href="#">What is Visual LVM</a></span>
-					<span class="link">
+					</div>
+					<div class="link">
+						<a href="#">What is Visual LVM</a></div>
+					<div class="link">
 						<a href="#">Free download</a>
-					</span>
-					<span class="link">
+					</div>
+					<div class="link">
 						<a href="#">Learn more about Visual LVM</a>
-					</span>
+					</div>
 				</div>
 				<div class="c_mid">
-					<div class="buy try"></div>
-					<div class="buy"></div>
-					<div class="buy"></div>
+					<div class="buy try">
+						<div class="price">$3.99</div>
+						<div class="deadline">per month for 1 user</div>
+						<div class="type">Visual LVM Standard MKI</div>
+						<div class="operate">BUT NOW</div>
+					</div>
+					<div class="buy">
+						<div class="price">$49.99</div>
+						<div class="deadline">per year for 1 user</div>
+						<div class="type">Visual LVM Standard MKI</div>
+						<div class="operate">BUT NOW</div>
+					</div>
+					<div class="buy">
+						<div class="price">$3.99</div>
+						<div class="deadline">life time for 1 user</div>
+						<div class="type">Visual LVM Standard MKI</div>
+						<div class="operate">BUT NOW</div>
+					</div>
 				</div>
 				<div class="c_bottom">
 					<div class="left">
 						<div class="header">Our public account</div>
-						<div class="item">Cyber Dimension @ Facebook</div>
-						<div class="item">Cyber Dimension @ Twitter</div>
+						<div class="item">
+							<img src="images/buy/u103.png"/>
+							Cyber Dimension @ Facebook
+						</div>
+						<div class="item">
+							<img src="images/buy/u108.png"/>
+							Cyber Dimension @ Twitter
+						</div>
 					</div>
 					<div class="right">
 						<div class="header">Contact us directly</div>
-						<div class="item">support@cyber-dimension.com</div>
+						<div class="item">
+							<img src="images/buy/u119.png"/>
+							support@cyber-dimension.com
+						</div>
 					</div>
 				</div>
 			</div>
