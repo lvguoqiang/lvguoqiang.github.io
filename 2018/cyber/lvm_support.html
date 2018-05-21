@@ -1,0 +1,409 @@
+<script type="text/javascript" src="js/ram.js"></script>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<title>Cyber Dimension Storage Expert</title>
+		<meta name="keywords" content="CyberDimension, Visual LVM,lvm manager,visual lvm manager"/>
+		<meta name="description" content="Cyber Dimension the Storage expert, provides Visual LVM management tool the best lvm manage tool"/>
+		<meta name="robots" content="index,follow,all,noodp"/>
+		<meta name="author" content="Cyber Dimension"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<style>
+			* {
+				    font-family: 'Arial Normal', 'Arial';
+			}
+			a {
+				text-decoration: none;
+				color: black;
+			}
+			a:hover {
+				text-decoration: none;
+				color: #337ab7;
+			}
+			img{
+				width: 30px ;
+				height: 30px ;
+				vertical-align: middle;
+			}
+			.container{
+				width: 90%;
+				margin:0 auto;
+				min-width:960px;
+			}
+			.top{
+				display:flex;
+				justify-content: space-between;
+				font-size: 20px;
+				max-width:980px;
+			}
+			.nav_left{
+				text-align:center;
+				padding-bottom:6px;
+				min-width:210px;
+			}
+			.nav_right{
+				display:flex;
+				justify-content: space-between;
+				min-width:650px;
+			}
+			.bak{
+				height: 50px;
+				background-color: rgba(192,192,192,0.7);
+				box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.34901);
+				border-radius: 10px;
+				line-height: 50px;
+				margin-bottom: 10px;
+			}
+			.bak a{
+				font-size: 25px;
+				margin-left: 25px;
+			}
+			.content{
+				// min-width: 1200px;
+				padding: 1px;
+				box-sizing: border-box;
+			}
+			.content .catalog{
+				float: left;
+				min-width: 180px;
+				width: 20%;
+			}
+			.content .catalog ul {
+				list-style-type: none;
+				margin-left: -20px;
+				font-size: 20px;
+			}
+			.content .catalog .one{
+				margin: 8px 0;
+			}
+			.content .catalog ul li{
+				width:140px;
+				margin: 5px 0;
+				height: 40px;
+				background-color: rgba(153, 153, 153, 1);
+			    border: none;
+			    border-radius: 4px;
+			    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.349019607843137);
+			    line-height: 40px;
+    			text-align: center;
+			}
+			.content .article{
+				// max-width: 975px;;
+				width: 80%;
+				float: left;
+				height: 80%;
+				overflow-y: scroll;
+			}
+			.content .article img{
+				width: 100%;
+				height: auto;
+				margin: 20px auto;
+			}
+			.content .article .header{
+				text-align: center;
+			    font-size: 25px;
+			    height: 40px;
+			    margin: 20px 0;
+			    line-height: 40px;
+			    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.349019607843137);
+			}
+			.header_bak {
+				background-color: rgba(204, 204, 204, 1);
+			    border: none;
+			    border-radius: 4px;
+			}
+			.content .item span{
+				display: block;
+				font-size: 20px;
+				margin: 3px 0;
+				text-indent: 45px;
+			}
+			.content .item .two span{
+				font-size: 20px;
+			    vertical-align: middle;
+			    display: inline-block;
+			    text-align: center;
+			    width: 9%;
+			    box-sizing: border-box;
+			    margin: 0 auto;
+			    text-indent: 0;
+			    word-wrap: break-word;
+			}
+			.content .Advance{
+				text-indent: 0 !important;
+				margin: 10px 0 !important;
+			}
+			.article .item .title{
+				font-size: 25px;
+			}
+			.article .item .cont{
+				font-size: 20px;
+				padding-left: 30px;
+			}
+			.article .item .title img{
+				width: 31px;
+    			height: 31px;
+    			vertical-align: middle;
+			}
+			.bottom img{
+				width: 30px !important;
+				height: 30px !important;
+				vertical-align: middle;
+				margin:0 !important;
+			}
+			.bottom{
+				font-size: 16px;
+			}
+			.bottom .left{
+				float:left;
+				margin-right: 30px;
+			}
+			.bottom .right{
+				float: left;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="top">
+				<div class="nav_left">
+					<div>
+						<img id="u4_img" class="img" src="images/index/u4.png">
+						<a class="" href="index.html">Cyber Dimension</a>
+					</div>
+				</div>
+				<div class="nav_right">
+					<div>
+						<a href="product.html">Visual LVM</a>
+					</div>
+					<div>
+						<a href="download.html">Download</a>
+					</div>
+					<div>
+						<a href="user_guide.html">User Guide</a>
+					</div>
+					<div>
+						<a href="lvm_support.html">Support</a>
+					</div>
+				</div>
+			</div>
+			<div class="bak">
+				<a href="product.html">Visual LVM</a>
+			</div>
+			<div class="content">
+				<div class="catalog">
+					<ul>
+						<li class="one">
+							<a href="#F.A.Q.">F.A.Q.</a>
+						</li>
+						<li class="one">
+							<a href="#Background">Background</a>
+						</li>
+						<li class="one">
+							<a href="#Contact">Contact US</a>
+						</li>
+					</ul>
+				</div>
+				<div class="article">
+					<div class="item">
+						<div id="F.A.Q." class="header header_bak">
+							F.A.Q.
+						</div>
+						<div class="two">
+							<div class="title">
+								<img src="images/lvm_support/u1461.png"/>
+								How many machines I can install Visual LVM?
+							</div>
+							<div class="cont">
+								Once registered, the user is granted an exclusive license to use. Visual LVM on one computer, for any legal purpose, at a time. You need a license for one machine on which the program is installed. The registered Visual LVM software may not be rented or leased but can be permanently transferred, if the person who receiving it agrees to the terms of this license. If the software is updated, the transfer must include the update and all previous versions.
+							</div>
+						</div>
+						<div class="two">
+							<div class="title">
+								<img src="images/lvm_support/u1461.png"/>
+								The hardware requirement of Visual LVM?
+							</div>
+							<div class="cont">
+								<div>CPU       : P4</div>
+								<div>Memory    : 1GB</div>
+								<div>Hard Disk : 200MB</div>
+							</div>
+						</div>
+						<div class="two">
+							<div class="title">
+								<img src="images/lvm_support/u1461.png"/>
+								How to launch Visual LVM?
+							</div>
+							<div class="cont">
+								Download the binary match your platform from download page, and extract it. Double click file 'visual_lvm' or go to Visual LVM folder and type './visual_lvm' in in console.
+							</div>
+						</div>
+						<div class="two">
+							<div class="title">
+								<img src="images/lvm_support/u1461.png"/>
+								Why cannot I create a Physical Volume?
+							</div>
+							<div class="cont">
+								Please check whether selected partition was mounted for use. User cannot create Physical Volume on mounted partition.
+							</div>
+						</div>
+						<div class="two">
+							<div class="title">
+								<img src="images/lvm_support/u1461.png"/>
+								Why cannot I delete a Physical Volume?
+							</div>
+							<div class="cont">
+								It is forbidden to delete a Physical Volume in Volume Group, to delete a Physical Volume, user need to remove it from Volume Group first.
+							</div>
+						</div>
+						<div class="two">
+							<div class="title">
+								<img src="images/lvm_support/u1461.png"/>
+								Why cannot I delete a Volume Group?
+							</div>
+							<div class="cont">
+								It is forbidden to delete a Volume Group with Logical Volume, to delete a Volume Group, user need to delete all Logical Volume(s) in Volume Group first.
+							</div>
+						</div>
+						<div class="two">
+							<div class="title">
+								<img src="images/lvm_support/u1461.png"/>
+								Why cannot I delete a Logical Volume?
+							</div>
+							<div class="cont">
+								Confirm if the Logical Volume is mounted or which is source of snapshot Logical Volume.
+							</div>
+						</div>
+						<div class="two">
+							<div class="title">
+								<img src="images/lvm_support/u1461.png"/>
+								Why cannot I remove a Physical Volume from Volume Group?
+							</div>
+							<div class="cont">
+								It is forbidden to remove a Physical Volume which is used by certain Logical Volume, to delete the Physical Volume, user need to delete all component(s) in it first.
+							</div>
+						</div>
+						<div class="two">
+							<div class="title">
+								<img src="images/lvm_support/u1461.png"/>
+								How to create RAID class Logical Volume?
+							</div>
+							<div class="cont">
+								<div>To create RAID class logical volume, user need to select correct Physical Volume count.</div>
+								<div>For Simple : 1+ Physical Volume</div>
+								<div>For Stripe/Mirror : 2+ Physical Volumes</div>
+								<div>For RAID4/5 : 3+ Physical Volumes</div>
+								<div>For RAID6 : 5+ Physical Volumes</div>
+								<div>For StripeMirror : 4+ (must be even) Physical Volumes</div>
+								<div>And select the type. The relative type will not be enabled for selecting with incorrect Physical Volume count.</div>
+							</div>
+						</div>
+
+						<div class="two">
+							<div class="title">
+								<img src="images/lvm_support/u1461.png"/>
+								How to change the size of Logical Volume?
+							</div>
+							<div class="cont">
+								User can input value in Volume Size input box or drag the bar twinkling on selected section to resize volume.
+								<img src="images/lvm_support/u1809.png"/>
+							</div>
+						</div>
+						<div class="two">
+							<div class="title">
+								<img src="images/lvm_support/u1461.png"/>
+								Why the twinkling bar on tail of Logical Volume is wider than other?
+							</div>
+							<div class="cont">
+								It is combined by 2 twinkling bars, the left one is belongs to tail section of Logical Volume, it is used to reduce volume size; the other one is belongs to first section on new selected area, it .is used to extend volume size.
+							</div>
+						</div>
+						<div class="two">
+							<div class="title">
+								<img src="images/lvm_support/u1461.png"/>
+								Why cannot I resize new selected section for extend Logical Volume?
+							</div>
+							<div class="cont">
+								Make sure the selected Physical Volume count is match with set of current Logical Volume(except for Stripe type Logical Volume, it can be expanded with any count of Physical Volume). You can only enlarge volume with the same Physical Volume count of its original set.
+							</div>
+						</div>
+						<div class="two">
+							<div class="title">
+								<img src="images/lvm_support/u1461.png"/>
+								Why cannot I extend Logical Volume by drag on section with spare space?
+							</div>
+							<div class="cont">
+								Check whether the other section was full selected for complex type Logical Volume.
+							</div>
+						</div>
+						<div class="two">
+							<div class="title">
+								<img src="images/lvm_support/u1461.png"/>
+								Why the actual size of Logical Volume is not match the value I drag/input?
+							</div>
+							<div class="cont">
+								The size of Logical Volume is multiple of Physical Extent, so the actual size of Logical Volume may not match the specified size. To get the size user wanted, who should set the size to a multiple of physical extents that exceeds the required size.
+							</div>
+						</div>
+						<div class="two">
+							<div class="title">
+								<img src="images/lvm_support/u1461.png"/>
+								Why cannot I select certain Physical Volume?
+							</div>
+							<div class="cont">
+								<div>For logical volume in complex types (e.g. mirror/stripe mirror/raide4/5/6), the stripe count must be the same in all segments but stripe type.</div>
+								<div>Note for different segment of a stripe volume, stripe count can be different.For instance, in a stripe volume consists 3 segments, the stripe count in each segments maybe 5,2,3 respectively.</div>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div id="Background" class="header header_bak">
+							Background
+						</div>
+						<div class="two">
+							<div class="title">
+								<img src="images/lvm_support/u1461.png"/>
+								What is the LVM?
+							</div>
+							<div class="cont">
+								The LVM(Logical Volume Management) is a system of managing logical volumes, or filesystems, that is much more advanced and flexible than the traditional method of partitioning a disk into one or more segments and formatting that partition with a filesystem. The wikipedia of LVM : pagelink.
+							</div>
+						</div>
+						<div class="two">
+							<div class="title">
+								<img src="images/lvm_support/u1461.png"/>
+								LVM, how to?
+							</div>
+							<div class="cont">
+								<div>The Logical Volume Manager Administration Document of RedHat : pagelink.</div>
+								<div>The LVM Administrator's Guide Configuration and Administration : pagelink.</div>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div id="Contact" class="header header_bak">
+							Contact US
+						</div>
+						<div class="bottom">
+							<div class="left">
+								<div>Follow our public account</div>
+								<div>For sale problem please write to</div>
+								<div>For other problem please write to</div>
+							</div>
+							<div class="right">
+								<div>
+									<img src="images/buy/u111.png"/>
+									sales@cyber-dimension.com
+								</div>
+								<div>
+									<img src="images/buy/u116.png"/>
+									support@cyber-dimension.com
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
