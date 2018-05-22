@@ -58,7 +58,7 @@
 			.produce{
 				font-size:40px;
 				font-weight:400;
-				margin-bottom:20px;
+				margin: 20px 0;
 			}
 			.link{
 				font-size:25px;
@@ -129,6 +129,19 @@
 				width:30px;
 				height:30px;
 			}
+			.c_bottom .item{
+				cursor: pointer;
+			}
+			.buy.try{
+				position: relative;
+			}
+			.buy.try img{
+				width: 80px;
+				height: 80px;
+				position: absolute;
+				top: 0;
+				right: 0;
+			}
 		</style>
 	</head>
 	<body>
@@ -141,6 +154,9 @@
 					</div>
 				</div>
 				<div class="nav_right">
+					<div>
+						<a href="buy.html">Purchase</a>
+					</div>
 					<div>
 						<a href="product.html">Visual LVM</a>
 					</div>
@@ -174,29 +190,30 @@
 						<div class="price">$3.99</div>
 						<div class="deadline">per month for 1 user</div>
 						<div class="type">Visual LVM Standard MKI</div>
-						<div class="operate">BUT NOW</div>
+						<div class="operate"  id="buy_3">BUT NOW</div>
+						<img src="images/buy/u150.png"/>
+					</div>
+					<div class="buy" >
+						<div class="price">$19.99</div>
+						<div class="deadline">per year for 1 user</div>
+						<div class="type">Visual LVM Standard MKI</div>
+						<div class="operate" id="buy_19">BUT NOW</div>
 					</div>
 					<div class="buy">
 						<div class="price">$49.99</div>
-						<div class="deadline">per year for 1 user</div>
-						<div class="type">Visual LVM Standard MKI</div>
-						<div class="operate">BUT NOW</div>
-					</div>
-					<div class="buy">
-						<div class="price">$3.99</div>
 						<div class="deadline">life time for 1 user</div>
 						<div class="type">Visual LVM Standard MKI</div>
-						<div class="operate">BUT NOW</div>
+						<div class="operate" id="buy_49">BUT NOW</div>
 					</div>
 				</div>
 				<div class="c_bottom">
 					<div class="left">
 						<div class="header">Our public account</div>
-						<div class="item">
+						<div class="item" id="contact_facebook">
 							<img src="images/buy/u103.png"/>
 							Cyber Dimension @ Facebook
 						</div>
-						<div class="item">
+						<div class="item" id="contact_twitter">
 							<img src="images/buy/u108.png"/>
 							Cyber Dimension @ Twitter
 						</div>
@@ -211,5 +228,30 @@
 				</div>
 			</div>
 		</div>
+		<script type="text/javascript">
+			var buy_3 = document.getElementById("buy_3"),
+				buy_19 = document.getElementById("buy_19"),
+				buy_49 = document.getElementById("buy_49"),
+				contact_facebook = document.getElementById("contact_facebook"),
+				contact_twitter = document.getElementById("contact_twitter");
+			buy_3.onclick = function() {
+				openWindow("https://order.shareit.com/cart/add?vendorid=200267472&PRODUCT[300848735]=1");
+			}
+			buy_19.onclick = function() {
+				openWindow("https://order.shareit.com/cart/add?vendorid=200267472&PRODUCT[300849218]=1");
+			}
+			buy_49.onclick = function() {
+				openWindow("https://order.shareit.com/cart/add?vendorid=200267472&PRODUCT[300849219]=1");
+			}
+			contact_facebook.onclick = function() {
+				openWindow("https://www.facebook.com/CyberDimension.Speaker");
+			}
+			contact_twitter.onclick = function() {
+				openWindow("http://twitter.com/CyberDimensions");
+			}
+			function openWindow(href) {
+				window.open(href);
+			}
+		</script>
 	</body>
 </html>

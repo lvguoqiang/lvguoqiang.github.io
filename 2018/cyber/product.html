@@ -120,6 +120,9 @@
 				</div>
 				<div class="nav_right">
 					<div>
+						<a href="buy.html">Purchase</a>
+					</div>
+					<div>
 						<a href="product.html">Visual LVM</a>
 					</div>
 					<div>
@@ -139,8 +142,8 @@
 					<div class="proc">Visual LVM MKI Mod1</div>
 					<div>A new style of  LVM management</div>
 					<div>Say goodbye to commands</div>
-					<div class="operator download">DOWNLOAD</div>
-					<div class="operator">BUY NOW</div>
+					<div class="operator download" id="download">DOWNLOAD</div>
+					<div class="operator" id="buy">BUY NOW</div>
 				</div>				
 				<div class="c_content">
 					<div class="item">
@@ -204,4 +207,16 @@
 			</div>
 		</div>
 	</body>
+	<script>
+		window.onload = function() {
+			var download = document.getElementById("download"),
+				buy = document.getElementById("buy");
+			download.onclick = function() {
+				window.location.href = "download.html";
+			}
+			buy.onclick = function() {
+				window.location.href = "buy.html";
+			}
+		}
+	</script>
 </html>

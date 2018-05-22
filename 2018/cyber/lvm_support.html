@@ -152,7 +152,7 @@
 				margin:0 !important;
 			}
 			.bottom{
-				font-size: 16px;
+				font-size: 20px;
 			}
 			.bottom .left{
 				float:left;
@@ -160,6 +160,19 @@
 			}
 			.bottom .right{
 				float: left;
+			}
+			.tab{
+				margin-left: 20px;
+			}
+			.tab .tab_item{
+				width: 155px !important;
+			    display: inline-block !important;
+			    text-align: left !important;
+			}
+			.tab span{
+				display: inline-block !important;
+				text-align: left !important;
+				width: auto !important;
 			}
 		</style>
 	</head>
@@ -173,6 +186,9 @@
 					</div>
 				</div>
 				<div class="nav_right">
+					<div>
+						<a href="buy.html">Purchase</a>
+					</div>
 					<div>
 						<a href="product.html">Visual LVM</a>
 					</div>
@@ -224,9 +240,15 @@
 								The hardware requirement of Visual LVM?
 							</div>
 							<div class="cont">
-								<div>CPU       : P4</div>
-								<div>Memory    : 1GB</div>
-								<div>Hard Disk : 200MB</div>
+								<div class="tab">
+									<span class="tab_item">CPU</span><span>:P4</span>
+								</div>
+								<div class="tab">
+									<span class="tab_item">Memory</span><span>:1GB</span>
+								</div>
+								<div class="tab">
+									<span class="tab_item">Hard Disk</span><span>:200MB</span>
+								</div>
 							</div>
 						</div>
 						<div class="two">
@@ -289,12 +311,23 @@
 								How to create RAID class Logical Volume?
 							</div>
 							<div class="cont">
+
 								<div>To create RAID class logical volume, user need to select correct Physical Volume count.</div>
-								<div>For Simple : 1+ Physical Volume</div>
-								<div>For Stripe/Mirror : 2+ Physical Volumes</div>
-								<div>For RAID4/5 : 3+ Physical Volumes</div>
-								<div>For RAID6 : 5+ Physical Volumes</div>
-								<div>For StripeMirror : 4+ (must be even) Physical Volumes</div>
+								<div class="tab">
+									<span class="tab_item">For Simple</span><span>:1+ Physical Volume</span>
+								</div>
+								<div class="tab">
+									<span class="tab_item">For Stripe/Mirror</span><span>:2+ Physical Volumes</span>
+								</div>
+								<div class="tab">
+									<span class="tab_item">For RAID4/5</span><span>:3+ Physical Volumes</span>
+								</div>
+								<div class="tab">
+									<span class="tab_item">For StripeMirror</span><span>:4+ (must be even) Physical Volumes</span>
+								</div>
+								<div class="tab">
+									<span class="tab_item">For RAID6</span><span>:5+ Physical Volumes</span>
+								</div>
 								<div>And select the type. The relative type will not be enabled for selecting with incorrect Physical Volume count.</div>
 							</div>
 						</div>
