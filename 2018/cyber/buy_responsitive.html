@@ -1,0 +1,301 @@
+<script type="text/javascript" src="js/ram.js"></script>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<title>Cyber Dimension Storage Expert</title>
+		<meta name="keywords" content="CyberDimension, Visual LVM,lvm manager,visual lvm manager"/>
+		<meta name="description" content="Cyber Dimension the Storage expert, provides Visual LVM management tool the best lvm manage tool"/>
+		<meta name="robots" content="index,follow,all,noodp"/>
+		<meta name="author" content="Cyber Dimension"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<style>
+			@media screen and (min-width: 1024px){
+				.top,.learn_more a{font-size: 18px !important;}
+				.c_left{font-size:15px !important;}
+			} /*>=1024的设备*/
+
+			@media screen and (min-width: 1100px) {
+				.top,.learn_more a{font-size: 20px !important;}
+				.c_left{font-size:17px !important;}
+				.text{font-size:16px !important;}
+				.text .download, .text .buy{font-size:18px !important;}
+			} /*>=1100的设备*/
+			@media screen and (min-width: 1280px) {
+				.top,.learn_more a{font-size: 22px !important;}
+				.c_left{font-size:19px !important;}
+				.text{font-size:18px !important;}
+				.text .download, .text .buy{font-size:20px !important;}
+			} /*>=1280的设备*/
+
+			@media screen and (min-width: 1366px) {
+				.top ,.learn_more a{font-size: 20px !important;}
+				.produce{font-size: 40px !important;}
+				.link{font-size: 25px !important;}
+			} 
+
+			@media screen and (min-width: 1440px) {
+				.top,.learn_more a{font-size: 26px !important;}
+				.c_left{font-size:23px !important;}
+				.text{font-size:24px !important;}
+				.text .download, .text .buy{font-size:26px !important;}
+			} 
+
+			@media screen and (min-width: 1680px) {
+				.top{font-size: 30px !important;}
+				.c_left{font-size:27px !important;}
+				.text{font-size:24px !important;}
+				.text .download, .text .buy{font-size:30px !important;}
+			} 
+			@media screen and (min-width: 1920px) {
+				.top,.learn_more a{font-size: 30px !important;}
+				.c_left{font-size:27px !important;}
+			} 
+			* {
+				font-family: 'Arial Normal', 'Arial';
+			}
+			a {
+				text-decoration: none;
+				color: black;
+			}
+			a:hover {
+				text-decoration: none;
+				color: #337ab7;
+			}
+			img{
+				width: 3rem ;
+				height: 3rem;
+				vertical-align: middle;
+			}
+			.container{
+				width: 90%;
+				margin:0 auto;
+			}
+			.top{
+				display:flex;
+				justify-content: space-between;
+				font-size: 2rem;
+				width: 100%;
+			}
+			.nav_left{
+				text-align:center;
+				padding-bottom:0.6rem;
+				min-width:21rem;
+				border-bottom: 3px solid lightgray;
+			}
+			.nav_right{
+				display:flex;
+				justify-content: space-between;
+				min-width:65rem;
+			}
+			.content-type{
+				font-size:1.7rem;
+			}
+			.c_top{
+				height: 23%;
+				display:flex;
+				flex-direction:column;
+				justify-content: space-around;
+			}
+			.produce{
+				// font-size:4rem;
+				font-weight:400;
+				// margin: 1rem 0;
+			}
+			.link{
+				font-size:2.5rem;
+			}
+			.c_mid{
+				display:flex;
+				justify-content:space-between;
+				height: 50%;
+			}
+			.c_mid .buy{
+				// width: 22rem;
+				width: 20%;
+				height:100%;
+				border:1px solid black;
+				background-color: rgba(204, 204, 204, 1);
+				text-align:center;
+			    display: flex;
+			    flex-direction: column;
+			    justify-content: space-around;
+			}
+			.c_mid .buy .price{
+				font-weight: 700;
+    			font-size: 3.5rem;
+			}
+			.c_mid .buy .deadline{
+			    margin: 0 auto;
+			    font-size: 2.5rem;
+			    width: 15.4rem;
+			    text-align: center;
+			}
+			.c_mid .buy .type{
+				font-size: 2.2rem;
+			    width: 80%;
+			    margin: 0 auto;
+			    color: #fff
+			}
+			.c_mid .buy .operate{
+				width: 63%;
+			    font-size: 2.3rem;
+			    background-color: rgba(185, 173, 62, 1);
+			    height: 4.5rem;
+			    line-height: 4.5rem;
+			    margin: 0 auto;
+			    cursor: pointer;
+			    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.34901);
+			    color:#fff;
+			}
+			.c_bottom{
+				height: 20%;
+				font-size: 2rem;
+				// margin-top:15px
+			}
+			.c_bottom .left{
+				margin-right:13rem;
+				float:left;
+				flex-direction: column;
+			    display: flex;
+			    justify-content: space-between;
+			}
+			.c_bottom .right{
+				flex-direction: column;
+			    display: flex;
+			    justify-content: space-between;	
+			    float: left;
+			}
+			.header{
+				font-size:2.5rem;
+				margin: 5px 0;
+			}
+			.c_bottom img{
+				width:3rem;
+				height:3rem;
+			}
+			.c_bottom .item{
+				cursor: pointer;
+			}
+			.buy.try{
+				position: relative;
+			}
+			.buy.try img{
+				width: 8rem;
+				height: 8rem;
+				position: absolute;
+				top: 0;
+				right: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="top">
+				<div class="nav_left">
+					<div>
+						<img id="u4_img" class="img" src="images/index/u4.png">
+						<a class="" href="index_responsitive.html">Cyber Dimension</a>
+					</div>
+				</div>
+				<div class="nav_right">
+					<div>
+						<a href="buy_responsitive.html">Purchase</a>
+					</div>
+					<div>
+						<a href="product_responsitive.html">Visual LVM</a>
+					</div>
+					<div>
+						<a href="download_responsitive.html">Download</a>
+					</div>
+					<div>
+						<a href="user_guide_responsitive.html">User Guide</a>
+					</div>
+					<div>
+						<a href="lvm_support_responsitive.html">Support</a>
+					</div>
+				</div>
+			</div>
+			<div class="content">
+				<div class="c_top">
+					<div class="produce">
+						A new style to manage LVM
+					</div>
+					<div class="link">
+						<a href="product_responsitive.html">What is Visual LVM</a></div>
+					<div class="link">
+						<a href="download_responsitive.html">Free download</a>
+					</div>
+					<div class="link">
+						<a href="product_responsitive.html">Learn more about Visual LVM</a>
+					</div>
+				</div>
+				<div class="c_mid">
+					<div class="buy try">
+						<div class="price">$3.99</div>
+						<div class="deadline">per month for 1 user</div>
+						<div class="type">Visual LVM Standard MKI</div>
+						<div class="operate"  id="buy_3">BUT NOW</div>
+						<img src="images/buy/u150.png"/>
+					</div>
+					<div class="buy" >
+						<div class="price">$19.99</div>
+						<div class="deadline">per year for 1 user</div>
+						<div class="type">Visual LVM Standard MKI</div>
+						<div class="operate" id="buy_19">BUT NOW</div>
+					</div>
+					<div class="buy">
+						<div class="price">$49.99</div>
+						<div class="deadline">life time for 1 user</div>
+						<div class="type">Visual LVM Standard MKI</div>
+						<div class="operate" id="buy_49">BUT NOW</div>
+					</div>
+				</div>
+				<div class="c_bottom">
+					<div class="left">
+						<div class="header">Our public account</div>
+						<div class="item" id="contact_facebook">
+							<img src="images/buy/u103.png"/>
+							Cyber Dimension @ Facebook
+						</div>
+						<div class="item" id="contact_twitter">
+							<img src="images/buy/u108.png"/>
+							Cyber Dimension @ Twitter
+						</div>
+					</div>
+					<div class="right">
+						<div class="header">Contact us directly</div>
+						<div class="item">
+							<img src="images/buy/u119.png"/>
+							support@cyber-dimension.com
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var buy_3 = document.getElementById("buy_3"),
+				buy_19 = document.getElementById("buy_19"),
+				buy_49 = document.getElementById("buy_49"),
+				contact_facebook = document.getElementById("contact_facebook"),
+				contact_twitter = document.getElementById("contact_twitter");
+			buy_3.onclick = function() {
+				openWindow("https://order.shareit.com/cart/add?vendorid=200267472&PRODUCT[300848735]=1");
+			}
+			buy_19.onclick = function() {
+				openWindow("https://order.shareit.com/cart/add?vendorid=200267472&PRODUCT[300849218]=1");
+			}
+			buy_49.onclick = function() {
+				openWindow("https://order.shareit.com/cart/add?vendorid=200267472&PRODUCT[300849219]=1");
+			}
+			contact_facebook.onclick = function() {
+				openWindow("https://www.facebook.com/CyberDimension.Speaker");
+			}
+			contact_twitter.onclick = function() {
+				openWindow("http://twitter.com/CyberDimensions");
+			}
+			function openWindow(href) {
+				window.open(href);
+			}
+		</script>
+	</body>
+</html>
