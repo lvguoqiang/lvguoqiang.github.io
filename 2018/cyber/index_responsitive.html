@@ -246,6 +246,7 @@
 			window.onload = function() {
 				var c_left = document.querySelector(".c_left"),
 					c_right = document.querySelector(".c_right");
+				c_right.style.maxHeight = c_right.offsetWidth  + "px";
 				c_left.style.height = c_right.offsetHeight + "px";
 			}
 		</script>
