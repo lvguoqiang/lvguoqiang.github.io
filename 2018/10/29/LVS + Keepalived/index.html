@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="高可用," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="IP lvs1: 192.168.40.111lvs2: 192.168.40.112rs1: 192.168.40.113rs2: 192.168.40.114vip: 192.168.40.110   LVS 服务器安装安装 Keepalived1[root@localhost u01]# yum install -y keepalived 配置 keepalived.con123456789">
+<meta name="keywords" content="高可用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LVS + Keepalived 实现高可用">
+<meta property="og:url" content="http://lvguoqiang.cn/2018/10/29/LVS + Keepalived/index.html">
+<meta property="og:site_name" content="Lvguoqiang">
+<meta property="og:description" content="IP lvs1: 192.168.40.111lvs2: 192.168.40.112rs1: 192.168.40.113rs2: 192.168.40.114vip: 192.168.40.110   LVS 服务器安装安装 Keepalived1[root@localhost u01]# yum install -y keepalived 配置 keepalived.con123456789">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://lvguoqiang.cn/images/lvs.png">
+<meta property="og:updated_time" content="2018-05-04T06:00:20.321Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LVS + Keepalived 实现高可用">
+<meta name="twitter:description" content="IP lvs1: 192.168.40.111lvs2: 192.168.40.112rs1: 192.168.40.113rs2: 192.168.40.114vip: 192.168.40.110   LVS 服务器安装安装 Keepalived1[root@localhost u01]# yum install -y keepalived 配置 keepalived.con123456789">
+<meta name="twitter:image" content="http://lvguoqiang.cn/images/lvs.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://lvguoqiang.cn/2018/10/29/LVS + Keepalived/"/>
+
+
+
+
+
+  <title>LVS + Keepalived 实现高可用 | Lvguoqiang</title>
+  
+
+
+
+
+
+
+
+
+  
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+
+  <div class="container  page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lvguoqiang</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-主页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            主页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于我">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签云">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签云
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-所有文章">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            所有文章
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lvguoqiang.cn/2018/10/29/LVS + Keepalived/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lvguoqiang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lvguoqiang">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">LVS + Keepalived 实现高可用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-29T22:25:26+08:00">
+                2018-10-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="IP"><a href="#IP" class="headerlink" title="IP"></a>IP</h1><blockquote>
+<p>lvs1: 192.168.40.111<br>lvs2: 192.168.40.112<br>rs1: 192.168.40.113<br>rs2: 192.168.40.114<br>vip: 192.168.40.110</p>
+</blockquote>
+<p><img src="/images/lvs.png"></p>
+<h1 id="LVS-服务器安装"><a href="#LVS-服务器安装" class="headerlink" title="LVS 服务器安装"></a>LVS 服务器安装</h1><h2 id="安装-Keepalived"><a href="#安装-Keepalived" class="headerlink" title="安装 Keepalived"></a>安装 Keepalived</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost u01]# yum install -y keepalived</span><br></pre></td></tr></table></figure>
+<h2 id="配置-keepalived-con"><a href="#配置-keepalived-con" class="headerlink" title="配置 keepalived.con"></a>配置 keepalived.con</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost u01]# cat /etc/keepalived/keepalived.conf </span><br><span class="line">! Configuration File for keepalived</span><br><span class="line"></span><br><span class="line">global_defs &#123;</span><br><span class="line">   notification_email &#123;</span><br><span class="line">      myemail.test@163.com 	#设置报警邮件地址, 可设置多个, 每行一个</span><br><span class="line">   &#125;</span><br><span class="line">   notification_email_from myemail.test@163.com 	# 设置邮件的发送地址</span><br><span class="line">   smtp_server 127.0.0.1	# 设置 smtp server 地址</span><br><span class="line">   smtp_connect_timeout 30	# 设置连接 smtp server 超时时间</span><br><span class="line">   router_id LVS_DEVEL		# 表示 keepalived 服务器的一个标识, 发邮件时显示在邮件主题信息</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">vrrp_instance VI_1 &#123;</span><br><span class="line">    state MASTER	# 设置角色, MASTER 表示主服务器, BACKUP 表示备用服务器</span><br><span class="line">    interface ens33	# 指定HA检测网络的接口</span><br><span class="line">    virtual_router_id 51 # 虚拟路由标识, 这个标识是一个数字，同一个vrrp实例使用唯一的标识。即同一vrrp_instance下，MASTER和BACKUP必须是一致的</span><br><span class="line">    priority 100	#定义优先级，数字越大，优先级越高，在同一个vrrp_instance下，MASTER的优先级必须大于BACKUP的优先级</span><br><span class="line">    advert_int 1	#设定MASTER与BACKUP负载均衡器之间同步检查的时间间隔，单位是秒</span><br><span class="line">    authentication &#123;	#设置验证类型和密码</span><br><span class="line">        auth_type PASS  #设置验证类型，主要有PASS和AH两种</span><br><span class="line">        auth_pass 1111 	#设置验证密码，在同一个vrrp_instance下，MASTER与BACKUP必须使用相同的密码才能正常通信</span><br><span class="line">    &#125;</span><br><span class="line">    virtual_ipaddress &#123; #设置虚拟IP地址，可以设置多个虚拟IP地址，每行一个</span><br><span class="line">        192.168.40.110</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">virtual_server 192.168.40.110 80 &#123; #设置虚拟服务器，需要指定虚拟IP地址和服务端口，IP与端口之间用空格隔开</span><br><span class="line">    delay_loop 6 	#设置运行情况检查时间，单位是秒</span><br><span class="line">    lb_algo rr 		#设置负载调度算法，这里设置为rr，即轮询算法</span><br><span class="line">    lb_kind DR 		#设置LVS实现负载均衡的机制，有NAT、TUN、DR三个模式可选</span><br><span class="line">    persistence_timeout 0 #会话保持时间，单位是秒。这个选项对动态网页是非常有用的，为集群系统中的session共享提供了一个很好的解决方案。</span><br><span class="line">                          #有了这个会话保持功能，用户的请求会被一直分发到某个服务节点，直到超过这个会话的保持时间。</span><br><span class="line">                          #需要注意的是，这个会话保持时间是最大无响应超时时间，也就是说，用户在操作动态页面时，如果50秒内没有执行任何操作</span><br><span class="line">                          #那么接下来的操作会被分发到另外的节点，但是如果用户一直在操作动态页面，则不受50秒的时间限制</span><br><span class="line">    protocol TCP 		 #指定转发协议类型，有TCP和UDP两种</span><br><span class="line"></span><br><span class="line">    real_server 192.168.40.113 80 &#123; #配置服务节点1，需要指定real server的真实IP地址和端口，IP与端口之间用空格隔开</span><br><span class="line">        weight 1</span><br><span class="line"></span><br><span class="line">	TCP_CHECK &#123;</span><br><span class="line">    	connect_timeout 3	#表示3秒无响应超时</span><br><span class="line">	    nb_get_retry 3		#表示重试次数</span><br><span class="line">            delay_before_retry 3 #表示重试间隔</span><br><span class="line">	    connect_port 80</span><br><span class="line">	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    real_server 192.168.40.114 80 &#123;</span><br><span class="line">        weight 1</span><br><span class="line"></span><br><span class="line">        TCP_CHECK &#123;</span><br><span class="line">            connect_timeout 3</span><br><span class="line">            nb_get_retry 3</span><br><span class="line">            delay_before_retry 3</span><br><span class="line">            connect_port 80</span><br><span class="line">        &#125;       </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>需要注意的地方:<br>interface ens33： 这里的 ens33 是我的网卡名称，想要查看自己网卡名称的话，在/etc/sysconfig/network-scripts/ifcfg-e（敲下TAB）<br>persistence_timeout 0：指的是在一定的时间内来自同一IP的连接将会被转发到同一realserver中。而不是严格意义上的轮询。默认为50s，因此在测试负载均衡是否可以正常轮询时，最好先把值设置为0，方便查看<br>TCP_CHECK { ：注意TCK_CHECK和 {之间有一个空格，忘记打这个空格的话，可能会出现后面用ipvsadm查看时，某个RS查看不到</p>
+<p>另外一个台备用服务器上Keepavlied的配置类似，只是把 MASTER 改为 BACKUP，把 priority 设置为比 MASTER 低</p>
+<h1 id="配置-rs-server"><a href="#配置-rs-server" class="headerlink" title="配置 rs server"></a>配置 rs server</h1><p>在两台RS上编写以下脚本文件realserver.sh</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost u01]# cat realserver.sh </span><br><span class="line">#! /bin/bash</span><br><span class="line"># description: Config realserver</span><br><span class="line"></span><br><span class="line">VIP=192.168.40.110</span><br><span class="line"></span><br><span class="line">/etc/rc.d/init.d/functions</span><br><span class="line"></span><br><span class="line">case &quot;$1&quot; in</span><br><span class="line">start)</span><br><span class="line">	/sbin/ifconfig lo:0 $VIP netmask 255.255.255.255 broadcast $VIP</span><br><span class="line">	/sbin/route add -host $VIP dev lo:0</span><br><span class="line">	echo &quot;1&quot; &gt; /proc/sys/net/ipv4/conf/lo/arp_ignore</span><br><span class="line">	echo &quot;2&quot; &gt; /proc/sys/net/ipv4/conf/lo/arp_announce</span><br><span class="line">	echo &quot;1&quot; &gt; /proc/sys/net/ipv4/conf/all/arp_ignore</span><br><span class="line">	echo &quot;2&quot; &gt; /proc/sys/net/ipv4/conf/all/arp_announce</span><br><span class="line">	sysctl -p &gt; /dev/null 2&gt;&amp;1</span><br><span class="line">	echo &quot;RealServer Start OK&quot;</span><br><span class="line">	;;</span><br><span class="line">stop)</span><br><span class="line">	/sbin/ifconfig lo:0 down</span><br><span class="line">	/sbin/route del $VIP &gt; /dev/null 2&gt;&amp;1</span><br><span class="line">	echo &quot;0&quot; &gt; /proc/sys/net/ipv4/conf/lo/arp_ignore</span><br><span class="line">        echo &quot;0&quot; &gt; /proc/sys/net/ipv4/conf/lo/arp_announce</span><br><span class="line">        echo &quot;0&quot; &gt; /proc/sys/net/ipv4/conf/all/arp_ignore</span><br><span class="line">        echo &quot;0&quot; &gt; /proc/sys/net/ipv4/conf/all/arp_announce</span><br><span class="line">	echo &quot;RealServer Stoped&quot;</span><br><span class="line">	;;</span><br><span class="line">*)</span><br><span class="line">	echo &quot;Usage: $0 &#123;start|stop&#125;&quot;</span><br><span class="line">	exit 1</span><br><span class="line">esac</span><br><span class="line"></span><br><span class="line">exit 0</span><br></pre></td></tr></table></figure>
+<p>执行 realserver.sh 脚本</p>
+<p><code>sh realserver.sh start</code></p>
+<h1 id="realServer-安装-nginx"><a href="#realServer-安装-nginx" class="headerlink" title="realServer 安装 nginx"></a>realServer 安装 nginx</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">yum install gcc-c++</span><br><span class="line">yum install -y pcre pcre-devel</span><br><span class="line">yum install -y zlib zlib-devel</span><br><span class="line">yum install -y openssl openssl-devel</span><br><span class="line">wget https://nginx.org/download/nginx-1.12.2.tar.gz</span><br><span class="line">tar -zxvf nginx-1.12.2.tar.gz </span><br><span class="line">cd nginx-1.12.2</span><br><span class="line">./configure</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line">/usr/local/nginx/sbin/nginx</span><br></pre></td></tr></table></figure>
+<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><h2 id="查看-keepalived-安装"><a href="#查看-keepalived-安装" class="headerlink" title="查看 keepalived 安装"></a>查看 keepalived 安装</h2><ul>
+<li>在 lvs1 查看, 因为 lvs1 是 MASTER, 所以 VIP 应该体现在 lvs1</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon ~]# ip addr</span><br><span class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN qlen 1</span><br><span class="line">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span><br><span class="line">    inet 127.0.0.1/8 scope host lo</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 ::1/128 scope host </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">2: ens33: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP qlen 1000</span><br><span class="line">    link/ether 00:0c:29:18:d3:99 brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 192.168.40.111/24 brd 192.168.40.255 scope global ens33</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet 192.168.40.110/32 scope global ens33</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::d87e:3f33:4a68:4004/64 scope link </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br></pre></td></tr></table></figure>
+<p>可以看到 192.168.40.110</p>
+<ul>
+<li>在 lvs2 查看</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon ~]# ip addr</span><br><span class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN qlen 1</span><br><span class="line">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span><br><span class="line">    inet 127.0.0.1/8 scope host lo</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 ::1/128 scope host </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">2: ens33: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP qlen 1000</span><br><span class="line">    link/ether 00:0c:29:f9:84:24 brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 192.168.40.112/24 brd 192.168.40.255 scope global ens33</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::930d:455d:790a:1f95/64 scope link </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::d87e:3f33:4a68:4004/64 scope link tentative dadfailed </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在 lvs1 停止 keepalived, 再次查看</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon ~]# systemctl stop keepalived</span><br><span class="line">[root@bogon ~]# ip addr</span><br><span class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN qlen 1</span><br><span class="line">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span><br><span class="line">    inet 127.0.0.1/8 scope host lo</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 ::1/128 scope host </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">2: ens33: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP qlen 1000</span><br><span class="line">    link/ether 00:0c:29:18:d3:99 brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 192.168.40.111/24 brd 192.168.40.255 scope global ens33</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::d87e:3f33:4a68:4004/64 scope link </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line"></span><br><span class="line">[root@bogon ~]# tail -f /var/log/messages </span><br><span class="line">May  3 09:51:31 localhost Keepalived[1976]: Stopping</span><br><span class="line">May  3 09:51:31 localhost systemd: Stopping LVS and VRRP High Availability Monitor...</span><br><span class="line">May  3 09:51:31 localhost Keepalived_vrrp[1978]: VRRP_Instance(VI_1) sent 0 priority</span><br><span class="line">May  3 09:51:31 localhost Keepalived_vrrp[1978]: VRRP_Instance(VI_1) removing protocol VIPs.</span><br><span class="line">May  3 09:51:31 localhost Keepalived_healthcheckers[1977]: Removing service [192.168.40.113]:80 from VS [192.168.40.110]:80</span><br><span class="line">May  3 09:51:31 localhost Keepalived_healthcheckers[1977]: Removing service [192.168.40.114]:80 from VS [192.168.40.110]:80</span><br><span class="line">May  3 09:51:31 localhost Keepalived_healthcheckers[1977]: Stopped</span><br><span class="line">May  3 09:51:32 localhost Keepalived_vrrp[1978]: Stopped</span><br><span class="line">May  3 09:51:32 localhost Keepalived[1976]: Stopped Keepalived v1.3.5 (03/19,2017), git commit v1.3.5-6-g6fa32f2</span><br><span class="line">May  3 09:51:32 localhost systemd: Stopped LVS and VRRP High Availability Monitor.</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看 lvs2 上的 ip 和日志信息</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon ~]# ip addr</span><br><span class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN qlen 1</span><br><span class="line">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span><br><span class="line">    inet 127.0.0.1/8 scope host lo</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 ::1/128 scope host </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">2: ens33: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP qlen 1000</span><br><span class="line">    link/ether 00:0c:29:f9:84:24 brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 192.168.40.112/24 brd 192.168.40.255 scope global ens33</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet 192.168.40.110/32 scope global ens33</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::930d:455d:790a:1f95/64 scope link </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::d87e:3f33:4a68:4004/64 scope link tentative dadfailed </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">[root@bogon ~]# tail -f /var/log/messages </span><br><span class="line">May  3 09:51:01 localhost Keepalived_vrrp[3268]: Sending gratuitous ARP on ens33 for 192.168.40.110</span><br><span class="line">May  3 09:51:01 localhost Keepalived_vrrp[3268]: Sending gratuitous ARP on ens33 for 192.168.40.110</span><br><span class="line">May  3 09:51:01 localhost Keepalived_vrrp[3268]: Sending gratuitous ARP on ens33 for 192.168.40.110</span><br><span class="line">May  3 09:51:01 localhost Keepalived_vrrp[3268]: Sending gratuitous ARP on ens33 for 192.168.40.110</span><br><span class="line">May  3 09:51:06 localhost Keepalived_vrrp[3268]: Sending gratuitous ARP on ens33 for 192.168.40.110</span><br><span class="line">May  3 09:51:06 localhost Keepalived_vrrp[3268]: VRRP_Instance(VI_1) Sending/queueing gratuitous ARPs on ens33 for 192.168.40.110</span><br><span class="line">May  3 09:51:06 localhost Keepalived_vrrp[3268]: Sending gratuitous ARP on ens33 for 192.168.40.110</span><br><span class="line">May  3 09:51:06 localhost Keepalived_vrrp[3268]: Sending gratuitous ARP on ens33 for 192.168.40.110</span><br><span class="line">May  3 09:51:06 localhost Keepalived_vrrp[3268]: Sending gratuitous ARP on ens33 for 192.168.40.110</span><br><span class="line">May  3 09:51:06 localhost Keepalived_vrrp[3268]: Sending gratuitous ARP on ens33 for 192.168.40.110</span><br></pre></td></tr></table></figure>
+<p>可以看到 keepalived 可以正常切换 ip</p>
+<h2 id="查看-RS-是否映射到-VIP"><a href="#查看-RS-是否映射到-VIP" class="headerlink" title="查看 RS 是否映射到 VIP"></a>查看 RS 是否映射到 VIP</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon ~]# ipvsadm -Ln</span><br><span class="line">IP Virtual Server version 1.2.1 (size=4096)</span><br><span class="line">Prot LocalAddress:Port Scheduler Flags</span><br><span class="line">  -&gt; RemoteAddress:Port           Forward Weight ActiveConn InActConn</span><br><span class="line">TCP  192.168.40.110:80 rr</span><br><span class="line">  -&gt; 192.168.40.113:80            Route   1      0          0         </span><br><span class="line">  -&gt; 192.168.40.114:80            Route   1      0          0</span><br></pre></td></tr></table></figure>
+<h2 id="keepalived的监控检测"><a href="#keepalived的监控检测" class="headerlink" title="keepalived的监控检测"></a>keepalived的监控检测</h2><p>停掉RS1的nginx，然后在MASTER负载均衡服务器上可以到看VIP映射关系中已经剔除了192.168.40.113</p>
+<ul>
+<li>停掉RS1的nginx </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon ~]# ps -ef | grep nginx</span><br><span class="line">root       4222      1  0 09:17 ?        00:00:00 nginx: master process /usr/local/nginx/sbin/nginx</span><br><span class="line">nobody     4223   4222  0 09:17 ?        00:00:00 nginx: worker process</span><br><span class="line">root       4287   4249  0 10:04 pts/0    00:00:00 grep --color=auto nginx</span><br><span class="line">[root@bogon ~]# pkill -9 nginx</span><br><span class="line">[root@bogon ~]# ps -ef | grep nginx</span><br><span class="line">root       4290   4249  0 10:05 pts/0    00:00:00 grep --color=auto nginx</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看VIP映射关系</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon ~]# ipvsadm -Ln</span><br><span class="line">IP Virtual Server version 1.2.1 (size=4096)</span><br><span class="line">Prot LocalAddress:Port Scheduler Flags</span><br><span class="line">  -&gt; RemoteAddress:Port           Forward Weight ActiveConn InActConn</span><br><span class="line">TCP  192.168.40.110:80 rr persistent 3</span><br><span class="line">  -&gt; 192.168.40.114:80            Route   1      0          2</span><br></pre></td></tr></table></figure>
+<p>可以看到已经把 RS1 剔除掉了</p>
+<h2 id="lvs-轮询测试"><a href="#lvs-轮询测试" class="headerlink" title="lvs 轮询测试"></a>lvs 轮询测试</h2><ul>
+<li>在 rs1 下创建 test.html</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost html]# cat /usr/local/nginx/html/test.html </span><br><span class="line">rs1: 113</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在 rs2 下创建 test.html</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon ~]# cat /usr/local/nginx/html/test.html </span><br><span class="line">rs2: 114</span><br></pre></td></tr></table></figure>
+<p>在非 lvs 服务器访问 192.168.40.110/test.html, 可以看到是轮询访问的, 但是如果你是一直操作改页面, 那么它会一直访问一个节点, 只有当你一段时间不操作时, 它会切换到另一个节点</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	<div>
+	  
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+	  
+	</div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/高可用/" rel="tag"># 高可用</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/29/Git工具管理/" rel="next" title="Git常用命令">
+                <i class="fa fa-chevron-left"></i> Git常用命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-overview sidebar-nav-active" data-target="site-overview-wrap">
+            Overview
+          </li>
+		  <li class="sidebar-nav-toc " data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/my.png"
+                alt="lvguoqiang" />
+            
+              <p class="site-author-name" itemprop="name">lvguoqiang</p>
+              <p class="site-description motion-element" itemprop="description">这里是 lvguoqiang.cn 一部分</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/lvguoqiang" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel ">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#IP"><span class="nav-number">1.</span> <span class="nav-text">IP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LVS-服务器安装"><span class="nav-number">2.</span> <span class="nav-text">LVS 服务器安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Keepalived"><span class="nav-number">2.1.</span> <span class="nav-text">安装 Keepalived</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-keepalived-con"><span class="nav-number">2.2.</span> <span class="nav-text">配置 keepalived.con</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置-rs-server"><span class="nav-number">3.</span> <span class="nav-text">配置 rs server</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#realServer-安装-nginx"><span class="nav-number">4.</span> <span class="nav-text">realServer 安装 nginx</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#测试"><span class="nav-number">5.</span> <span class="nav-text">测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#查看-keepalived-安装"><span class="nav-number">5.1.</span> <span class="nav-text">查看 keepalived 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看-RS-是否映射到-VIP"><span class="nav-number">5.2.</span> <span class="nav-text">查看 RS 是否映射到 VIP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#keepalived的监控检测"><span class="nav-number">5.3.</span> <span class="nav-text">keepalived的监控检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lvs-轮询测试"><span class="nav-number">5.4.</span> <span class="nav-text">lvs 轮询测试</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lvguoqiang</span>
+
+  
+</div>
+
+
+	<div class="powered-by">
+	<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+	  本站访客数:<span id="busuanzi_value_site_uv"></span>
+	</span>
+	</div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="#">Me</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共5.6k字</span>
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+</html>

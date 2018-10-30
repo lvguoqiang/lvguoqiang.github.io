@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="检验," />
+  <meta name="keywords" content="git," />
 
 
 
@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="简介 用于对前台传到后台的 form 表单的数据进行校验;对 DTO 中的属性进行校验  检验规则空检验 @Null 验证对象是否为空 @NotNull 验证对象不为空, 无法查检长度为0的字符串 @NotBlank 检查约束字符串是不是为Null, 还有被Trim的长度是否大于0, 只对字符串, 且会去掉前后空格 @NotEmpty 检查约束元素是否为Null或EMPTY  Boolean 校验">
-<meta name="keywords" content="检验">
+<meta name="description" content="主要步骤  添加(add), 提交(commit), 远程推送(push), 远程克隆(clone), 远程更新(pull),  其它命令: branch, tag, remote, checkout, merge, log, status, fetch, rebase等 命令git branch 查看本地分支git branch -a 查看远程所有分支git branch  新增本地分支git">
+<meta name="keywords" content="git">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HSR303 validate">
-<meta property="og:url" content="http://lvguoqiang.cn/2018/04/23/JSR303的validate方法/index.html">
+<meta property="og:title" content="Git常用命令">
+<meta property="og:url" content="http://lvguoqiang.cn/2018/10/29/Git工具管理/index.html">
 <meta property="og:site_name" content="Lvguoqiang">
-<meta property="og:description" content="简介 用于对前台传到后台的 form 表单的数据进行校验;对 DTO 中的属性进行校验  检验规则空检验 @Null 验证对象是否为空 @NotNull 验证对象不为空, 无法查检长度为0的字符串 @NotBlank 检查约束字符串是不是为Null, 还有被Trim的长度是否大于0, 只对字符串, 且会去掉前后空格 @NotEmpty 检查约束元素是否为Null或EMPTY  Boolean 校验">
+<meta property="og:description" content="主要步骤  添加(add), 提交(commit), 远程推送(push), 远程克隆(clone), 远程更新(pull),  其它命令: branch, tag, remote, checkout, merge, log, status, fetch, rebase等 命令git branch 查看本地分支git branch -a 查看远程所有分支git branch  新增本地分支git">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-23T10:54:15.661Z">
+<meta property="og:image" content="http://lvguoqiang.cn/images/git流程.png">
+<meta property="og:updated_time" content="2018-10-15T03:28:24.886Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HSR303 validate">
-<meta name="twitter:description" content="简介 用于对前台传到后台的 form 表单的数据进行校验;对 DTO 中的属性进行校验  检验规则空检验 @Null 验证对象是否为空 @NotNull 验证对象不为空, 无法查检长度为0的字符串 @NotBlank 检查约束字符串是不是为Null, 还有被Trim的长度是否大于0, 只对字符串, 且会去掉前后空格 @NotEmpty 检查约束元素是否为Null或EMPTY  Boolean 校验">
+<meta name="twitter:title" content="Git常用命令">
+<meta name="twitter:description" content="主要步骤  添加(add), 提交(commit), 远程推送(push), 远程克隆(clone), 远程更新(pull),  其它命令: branch, tag, remote, checkout, merge, log, status, fetch, rebase等 命令git branch 查看本地分支git branch -a 查看远程所有分支git branch  新增本地分支git">
+<meta name="twitter:image" content="http://lvguoqiang.cn/images/git流程.png">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://lvguoqiang.cn/2018/04/23/JSR303的validate方法/"/>
+  <link rel="canonical" href="http://lvguoqiang.cn/2018/10/29/Git工具管理/"/>
 
 
 
 
 
-  <title>HSR303 validate | Lvguoqiang</title>
+  <title>Git常用命令 | Lvguoqiang</title>
   
 
 
@@ -254,7 +256,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://lvguoqiang.cn/2018/04/23/JSR303的validate方法/">
+    <link itemprop="mainEntityOfPage" href="http://lvguoqiang.cn/2018/10/29/Git工具管理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lvguoqiang">
@@ -271,7 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">HSR303 validate</h1>
+          <h1 class="post-title" itemprop="name headline">Git常用命令</h1>
         
 
         <div class="post-meta">
@@ -283,8 +285,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-23T00:00:00+08:00">
-                2018-04-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-29T22:25:26+08:00">
+                2018-10-29
               </time>
             
 
@@ -321,47 +323,87 @@
       
 
       
-        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><blockquote>
-<p>用于对前台传到后台的 form 表单的数据进行校验;<br>对 DTO 中的属性进行校验</p>
-</blockquote>
-<h2 id="检验规则"><a href="#检验规则" class="headerlink" title="检验规则"></a>检验规则</h2><h3 id="空检验"><a href="#空检验" class="headerlink" title="空检验"></a>空检验</h3><ul>
-<li>@Null 验证对象是否为空</li>
-<li>@NotNull 验证对象不为空, 无法查检长度为0的字符串</li>
-<li>@NotBlank 检查约束字符串是不是为Null, 还有被Trim的长度是否大于0, 只对字符串, 且会去掉前后空格</li>
-<li>@NotEmpty 检查约束元素是否为Null或EMPTY</li>
+        <h1 id="主要步骤"><a href="#主要步骤" class="headerlink" title="主要步骤"></a>主要步骤</h1><p><img src="/images/git流程.png"> </p>
+<pre><code>添加(add), 提交(commit), 远程推送(push), 远程克隆(clone), 远程更新(pull), 
+</code></pre><p>其它命令: branch, tag, remote, checkout, merge, log, status, fetch, rebase等</p>
+<h1 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h1><p>git branch 查看本地分支<br>git branch -a 查看远程所有分支<br>git branch <branch name=""> 新增本地分支<br>git checkout <branch name=""> 切换到本地分支<br>git branch -d <branch name=""> 删除分支(注意必须先切换到其它分支才行)<br>git branch -av  显示提交信息<br>git branch -avv 显示本地分支和那个远程分支关联</branch></branch></branch></p>
+<p>git push origin dev -u 将本地修改提交到远程的 dev 分支(如果远程不存在dev分支, 需要加 -u)</p>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><ol>
+<li><p>将本地的文件 commit 到一个分支后, 再其它分支是无法看见该文件的, 除非 合并分支<br>例如:<br> 有两个分支: master, dev<br> 有一个文件 a.txt, 将它提交到 dev 分支, 在 master 分支就无法看见该文件</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br><span class="line">touch a.txt</span><br><span class="line">git add a.txt</span><br><span class="line">git checkout dev</span><br><span class="line">git commit -m &quot;test&quot;</span><br></pre></td></tr></table></figure>
+<p> 此时在 master 分支里面无法看见 a.txt 这个文件</p>
+</li>
+<li><p>解决冲突<br>例如:<br> 当你同时修改 a.txt时, 使用 git pull, 就会显示 dev | merging<br> 现在需要手动编辑该文件, 然后再次提交</p>
+</li>
+<li><p>一种常见的情况<br> 你在远程新建一个 master 分支, 并且给里面新建了一个 readme.md 文件<br> 你在本地又新建了一个 master 分支, 并且新建了 a.txt<br> 然后你 git remote -a origin <a href="http://github.com/text.git" target="_blank" rel="noopener">http://github.com/text.git</a><br> 现在就回出现 即不能提交又不能更新的问题. how?<br> 需要将本地 master 分支与远程 master 分支进行关联</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch --set-upstream-to=origin/master master</span><br><span class="line">git pull --allow-unrelated-histories</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>git tag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git tag V1.0</span><br><span class="line">git push origin V1.0 -u</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>基于 tag 进行开发</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch V1.0_dev V1.0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>本地添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 添加指定文件到缓存区</span><br><span class="line">git add &lt;fileName&gt;</span><br><span class="line"># 添加指定目录到缓存区</span><br><span class="line">git add &lt;directory&gt;</span><br><span class="line"># 添加所有</span><br><span class="line">git add -A</span><br><span class="line"># 将指定目录及子目录移出缓存区</span><br><span class="line">git rm --cached target -f</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>本地提交</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 提交至本地仓库</span><br><span class="line">git commit -m &quot;提交&quot;</span><br><span class="line"># 提交所有</span><br><span class="line">git commit -mA &quot;all&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>分支管理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 查看当前分支</span><br><span class="line">git branch </span><br><span class="line"># 查看所有分支</span><br><span class="line">git branch -a </span><br><span class="line"># 基于当前分支, 新建分支</span><br><span class="line">git branch &lt;branch name&gt;</span><br><span class="line"># 基于提交新建分支</span><br><span class="line">git branch &lt;branch name&gt; &lt;commit id&gt;</span><br><span class="line"># 切换分支</span><br><span class="line">git checkout &lt;branch name&gt;</span><br><span class="line"># 合并分支</span><br><span class="line">git merge &lt;merge target&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>tag管理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 查看当前</span><br><span class="line">git tag</span><br><span class="line"># 创建分类</span><br><span class="line">git tag &lt;tag name&gt; &lt;branch name&gt;</span><br><span class="line"># 删除分类</span><br><span class="line">git tag -d &lt;tag name&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="撤回"><a href="#撤回" class="headerlink" title="撤回"></a>撤回</h1><ul>
+<li>撤回到上一次的提交记录<ul>
+<li>git reset –hard HEAD^</li>
+<li>这里是将本地文件回滚到上一次commit的时候</li>
 </ul>
-<h3 id="Boolean-校验"><a href="#Boolean-校验" class="headerlink" title="Boolean 校验"></a>Boolean 校验</h3><ul>
-<li>@AssertTrue 验证 Boolean 对象是否为 true</li>
-<li>@AssertFalse 验证 Boolean 对象是否为 false</li>
+</li>
+<li>撤回到某次指定的 commit<ul>
+<li>git log –pretty=oneline<ul>
+<li>可以列出commit的记录</li>
 </ul>
-<h3 id="长度校验"><a href="#长度校验" class="headerlink" title="长度校验"></a>长度校验</h3><ul>
-<li>@Size(min=,max=) 验证对象 (Array, Collection, Map, String) 长度是否在给定的范围之内</li>
-<li>@Length(min=,max=) 验证字符串的长度是否在 min 和 max 之间</li>
+</li>
+<li>git reset –hard commitId<ul>
+<li>将文件撤回到 commitId对应的地方</li>
 </ul>
-<h3 id="日期校验"><a href="#日期校验" class="headerlink" title="日期校验"></a>日期校验</h3><ul>
-<li>@Past 验证 Date 和 Calendar 对象是否在当前时间之前, 验证成立的话被注释的元素一定是一个过去的日期</li>
-<li>@Future 验证 Date 和 Calendar 对象是否在当前时间之后, 验证成立的话被注释的元素一定是一个将来的日期</li>
-<li>@Pattern 验证 String 对象是否符合正则表达式的规则, 被注释的元素符合指定的正则表达式, regex: 正则表达式 flags: 指定 Pattern.Flag 的数组, 标识正则表达式的相关内容</li>
+</li>
 </ul>
-<h3 id="数值校验"><a href="#数值校验" class="headerlink" title="数值校验"></a>数值校验</h3><ul>
-<li>建议使用在String, Integer类型, 不要使用在 int 类型上, 因为, “” 无法转化为int</li>
-<li>@Min 验证 Number 或 String 对象是否大于等于指定的值</li>
-<li>@Max 验证 Number 或 String 对象是否小于等于指定的值</li>
-<li>@DecimalMax 被标注的值必须不大于约束中指定的最大值, 这个约束的参数是一个通过 BigDecimal 定义的最大值的字符串表示, 小数存在精度</li>
-<li>@DecimalMin 被标注的值必须不小于约束中指定的最小值, 这个约束的参数是一个通过 BigDecimal 定义的最小值的字符串表示, 小数存在精度</li>
-<li>@Digits  验证 Number 和 String 的构成是否合法</li>
-<li>@Digits(integer=,faction=) 验证字符串是否符合指定格式的数字, integer 指定整数精度, faction指定小数精度</li>
-<li>@Range(min=,max=) 被指定的元素必须在合适的范围内</li>
-<li>@Range(min=1000,max=5000,message=”range.bean.wage”)</li>
-<li>@Valid 递归的关联对象进行校验, 如果关联对象是个集合或者数组, 那么对其中的元素进行递归校验, 如果是一个map, 则对其中的值部分进行校验</li>
-<li>@CreditCardNumber 信用卡校验</li>
-<li>@Email 验证是否是邮件地址, 如果为 null, 不进行验证, 算通过验证</li>
-<li>@Url(protocol=,host=,port=,regexp=,flags=)</li>
+</li>
+<li>将commit 信息撤回<ul>
+<li>遇到使用idea提交的时候发现message信息写的有问题</li>
+<li>git reset –soft HEAD^</li>
+<li>这里只是将提交记录回滚到上一次提交，但是文件并没有修改, 只要再重新提交就好</li>
 </ul>
-<h3 id="用于-controller-中"><a href="#用于-controller-中" class="headerlink" title="用于 controller 中"></a>用于 controller 中</h3><p>需要在类上面添加 @Valid</p>
-<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class Order &#123;</span><br><span class="line">    // 必须不为空, 大小为10</span><br><span class="line">    @NotNull</span><br><span class="line">    @Size(min=10,max=10)</span><br><span class="line">    private String orderId;</span><br><span class="line">    </span><br><span class="line">    // 必须不为空</span><br><span class="line">    @NotEmpty</span><br><span class="line">    private String customer;</span><br><span class="line">    </span><br><span class="line">    // 嵌套验证</span><br><span class="line">    @Valid</span><br><span class="line">    private Product product</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@NotNull(message=&quot;adultTax不能为空&quot;)</span><br><span class="line">private Integer adultTax;</span><br><span class="line">@NotNull(message=&quot;adultTaxType不能为空&quot;)</span><br><span class="line">@Min(values=0, message=&quot;adultTaxType 的最小值为0&quot;)</span><br><span class="line">@Max(values=1, message=&quot;adultTaxType 的最大值为1&quot;)</span><br><span class="line">private Integer adultTaxType;</span><br><span class="line"></span><br><span class="line">@NotNull(message=&quot;reason信息不能为空&quot;)</span><br><span class="line">@Pattern(regexp=&quot;[1-7]&#123;1&#125;&quot;,message=&quot;reson的类型值为 1-7 中的一个类型&quot;)</span><br><span class="line">private String reason;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class BeanValidatorUtil &#123;</span><br><span class="line"></span><br><span class="line">    private static Validator validator = Validation.buildDefaultValidatorFactory().getValidator();</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 调用JSR303的validate方法, 验证失败时抛ConstraintViolationException.</span><br><span class="line">     */</span><br><span class="line">    @SuppressWarnings(&#123; &quot;unchecked&quot;, &quot;rawtypes&quot; &#125;)</span><br><span class="line">    public static void validate(Object object, Class&lt;?&gt;... groups)</span><br><span class="line">            throws ConstraintViolationException &#123;</span><br><span class="line">        Set constraintViolations = validator.validate(object, groups);</span><br><span class="line">        if (!constraintViolations.isEmpty()) &#123;</span><br><span class="line">            throw new ConstraintViolationException(constraintViolations);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h1><ul>
+<li><p>删除分支</p>
+<ul>
+<li><p>删除本地分支(branch1为例)</p>
+<ol>
+<li><p>git check branch1</p>
+<p>git branch -d</p>
+</li>
+<li><p>git branch -d branch1</p>
+</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p>删除远程分支</p>
+<ul>
+<li>git push origin –delete branch1 </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
       
     </div>
     
@@ -387,7 +429,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/检验/" rel="tag"># 检验</a>
+            <a href="/tags/git/" rel="tag"># git</a>
           
         </div>
       
@@ -400,8 +442,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/18/CSS/" rel="next" title="CSS总结">
-                <i class="fa fa-chevron-left"></i> CSS总结
+              <a href="/2018/04/23/JSR303的validate方法/" rel="next" title="HSR303 validate">
+                <i class="fa fa-chevron-left"></i> HSR303 validate
               </a>
             
           </div>
@@ -410,8 +452,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/10/29/Git工具管理/" rel="prev" title="Git常用命令">
-                Git常用命令 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/10/29/LVS + Keepalived/" rel="prev" title="LVS + Keepalived 实现高可用">
+                LVS + Keepalived 实现高可用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -549,7 +591,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#检验规则"><span class="nav-number">1.1.</span> <span class="nav-text">检验规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#空检验"><span class="nav-number">1.1.1.</span> <span class="nav-text">空检验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Boolean-校验"><span class="nav-number">1.1.2.</span> <span class="nav-text">Boolean 校验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#长度校验"><span class="nav-number">1.1.3.</span> <span class="nav-text">长度校验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日期校验"><span class="nav-number">1.1.4.</span> <span class="nav-text">日期校验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数值校验"><span class="nav-number">1.1.5.</span> <span class="nav-text">数值校验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用于-controller-中"><span class="nav-number">1.1.6.</span> <span class="nav-text">用于 controller 中</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#案例"><span class="nav-number">1.2.</span> <span class="nav-text">案例</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#主要步骤"><span class="nav-number">1.</span> <span class="nav-text">主要步骤</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#命令"><span class="nav-number">2.</span> <span class="nav-text">命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注意"><span class="nav-number">3.</span> <span class="nav-text">注意</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#撤回"><span class="nav-number">4.</span> <span class="nav-text">撤回</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分支"><span class="nav-number">5.</span> <span class="nav-text">分支</span></a></li></ol></div>
             
 
           </div>
